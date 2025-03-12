@@ -1,6 +1,5 @@
-# Problem 1
-# import numpy as np
-# import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.pyplot as plt
 
 def projectile_motion(v0, theta, g=9.81, time_resolution=0.01):
     """Simulates projectile motion given initial velocity and angle."""
@@ -9,7 +8,7 @@ def projectile_motion(v0, theta, g=9.81, time_resolution=0.01):
     # Time of flight
     T = (2 * v0 * np.sin(theta_rad)) / g
     
-# Time array
+    # Time array
     t = np.arange(0, T, time_resolution)
     
     # Equations of motion
@@ -43,7 +42,7 @@ def plot_range_vs_angle(v0, g=9.81):
     plt.xlabel("Launch Angle (degrees)")
     plt.ylabel("Range (m)")
     plt.title("Range vs. Launch Angle")
-    plt.legend()dir
+    plt.legend()
     plt.grid()
     plt.show()
 
@@ -52,4 +51,4 @@ initial_velocity = 20  # m/s
 theta_values = [15, 30, 45, 60, 75]  # Different angles
 plot_projectile_motion(initial_velocity, theta_values)
 plot_range_vs_angle(initial_velocity)
-
+plt.show()
