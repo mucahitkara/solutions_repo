@@ -1,13 +1,18 @@
-# Problem 1
+```python
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplimot as plt
 
+```
+
+
+```python
 # Gravitational Constant (m^3/kg/s^2)
-G = 6.67430e-11  
-# Mass of the Sun (kg)
-M_sun = 1.989e30  
+G = 6.67430e-11
 
-# Define function for Kepler's Third Law: T^2 = (4π^2 * r^3) / (G * M_sun)
+# Mass of the Sun (kg)
+M_sun = 1.989e30
+
+# Function for Kepler’s Third Law: T^2 = (4π^2 * r^3) / (G * M_sun)
 def orbital_period(radius):
     return np.sqrt((4 * np.pi**2 * radius**3) / (G * M_sun))
 
@@ -30,19 +35,67 @@ orbital_periods = {planet: orbital_period(r) / (60 * 60 * 24 * 365) for planet, 
 radii = np.array(list(planets.values()))
 periods = np.array(list(orbital_periods.values()))
 
-# Plot Kepler's Third Law: log(T^2) vs log(r^3)
-plt.figure(figsize=(8, 6))
-plt.loglog(radii**3, periods**2, 'bo-', label="Planets")
-
-plt.xlabel("Orbital Radius Cubed (r^3) [m^3]")
-plt.ylabel("Orbital Period Squared (T^2) [years^2]")
-plt.title("Kepler's Third Law Verification")
+# Plot Kepler’s Third Law: log(T^2) vs log(r^3)
+plt.figure(figsize=(8,6))
+plt.scatter(np.log10(radii**3), np.log10(periods**2), color="blue", label="Planets")
+plt.xlabel("log(r^3) (log of radius cubed)")
+plt.ylabel("log(T^2) (log of period squared)")
+plt.title("Kepler's Third Law: Orbital Period vs Radius")
 plt.legend()
-plt.grid(True, which="both", linestyle="--", linewidth=0.5)
-
-# Show the plot
+plt.grid()
+plt.show()
+# Plot Orbital Radius vs Orbital Period
+plt.figure(figsize=(8,6))
+plt.scatter(radii, periods, color="green", label="Planets")
+plt.xlabel("Orbital Radius (m)")
+plt.ylabel("Orbital Period (years)")
+plt.title("Orbital Period vs Orbital Radius")
+plt.legend()
+plt.grid()
 plt.show()
 
-# Print the calculated values for verification
-for planet, period in orbital_periods.items():
-    print(f"{planet}: Orbital Period = {period:.2f} years")
+# 2D Visualization of Circular Orbits
+fig, ax = plt.subplots(figsize=(6,6))
+for planet, radius in planets.items():
+    circle = plt.Circle((0,0), radius, fill=False, label=planet)
+    ax.add_patch(circle)
+
+# Sun at the center
+ax.scatter(0, 0, color="yellow", marker="o", s=100, label="Sun")
+
+# Setting limits and labels
+ax.set_xlim(-5e12, 5e12)
+ax.set_ylim(-5e12, 5e12)
+ax.set_xlabel("X Position (m)")
+ax.set_ylabel("Y Position (m)")
+ax.set_title("Circular Orbits of Planets in the Solar System")
+ax.legend()
+ax.set_aspect('equal')
+plt.grid()
+plt.show()
+
+
+```
+
+
+    
+![png](Problem_1_files/Problem_1_1_0.png)
+    
+
+
+
+    
+![png](Problem_1_files/Problem_1_1_1.png)
+    
+
+
+
+    
+![png](Problem_1_files/Problem_1_1_2.png)
+    
+
+
+
+```python
+
+```
