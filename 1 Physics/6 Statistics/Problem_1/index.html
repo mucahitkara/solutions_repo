@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Problem 1 - Exploring the Central Limit Theorem through Simulations - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Problem 1 - Exploring the Central Limit Theorem through Simulations";
         var mkdocs_page_input_path = "1 Physics/6 Statistics/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -84,8 +84,26 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">6 Statistics</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1 - Exploring the Central Limit Theorem through Simulations</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#motivation">🔷 Motivation:</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#task">🔷 Task:</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-simulating-sampling-distributions">1. Simulating Sampling Distributions:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-sampling-and-visualization">2. Sampling and Visualization:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-parameter-exploration">3. Parameter Exploration:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-practical-applications">4. Practical Applications:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#deliverables">🔷 Deliverables:</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hints-and-resources">🔷 Hints and Resources:</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -165,7 +183,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">6 Statistics</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Problem 1 - Exploring the Central Limit Theorem through Simulations</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -173,7 +191,82 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="problem-1-exploring-the-central-limit-theorem-through-simulations">Problem 1 - Exploring the Central Limit Theorem through Simulations</h1>
+<h2 id="motivation">🔷 Motivation:</h2>
+<p>The Central Limit Theorem (CLT) is a cornerstone of probability and statistics.<br/>
+It states that the <strong>sampling distribution of the sample mean approaches a normal distribution</strong> as the sample size increases, regardless of the population’s original distribution.</p>
+<p>Simulations provide an intuitive and hands-on way to observe this phenomenon in action.</p>
+<hr/>
+<h2 id="task">🔷 Task:</h2>
+<h3 id="1-simulating-sampling-distributions">1. Simulating Sampling Distributions:</h3>
+<ul>
+<li>Select several types of population distributions:</li>
+<li>Uniform distribution  </li>
+<li>Exponential distribution  </li>
+<li>
+<p>Binomial distribution</p>
+</li>
+<li>
+<p>For each distribution, generate a large dataset representing the population.</p>
+</li>
+</ul>
+<hr/>
+<h3 id="2-sampling-and-visualization">2. Sampling and Visualization:</h3>
+<ul>
+<li>Randomly sample data from the population.</li>
+<li>Calculate the <strong>sample mean</strong> for different sample sizes (e.g., 5, 10, 30, 50).</li>
+<li>Repeat the process many times to generate the <strong>sampling distribution</strong> of the sample mean.</li>
+<li>Plot <strong>histograms</strong> of the sample means for each sample size.</li>
+<li>Observe convergence to the normal distribution as sample size increases.</li>
+</ul>
+<hr/>
+<h3 id="3-parameter-exploration">3. Parameter Exploration:</h3>
+<ul>
+<li>Investigate how:</li>
+<li>The shape of the original population distribution</li>
+<li>
+<p>The sample size<br/>
+  influence the <strong>rate of convergence to normality</strong></p>
+</li>
+<li>
+<p>Highlight how <strong>population variance</strong> impacts the spread of the sampling distribution.</p>
+</li>
+</ul>
+<hr/>
+<h3 id="4-practical-applications">4. Practical Applications:</h3>
+<p>Reflect on the importance of CLT in real-world contexts:</p>
+<ul>
+<li>Estimating population parameters  </li>
+<li>Quality control in manufacturing  </li>
+<li>Predicting outcomes in financial models  </li>
+</ul>
+<hr/>
+<h2 id="deliverables">🔷 Deliverables:</h2>
+<ol>
+<li>A Markdown document and Python script or notebook implementing the simulations  </li>
+<li>Plots illustrating the sampling distributions and their convergence to normality  </li>
+<li>A short discussion on:</li>
+<li>The observed results  </li>
+<li>How they align with theoretical expectations</li>
+</ol>
+<hr/>
+<h2 id="hints-and-resources">🔷 Hints and Resources:</h2>
+<ul>
+<li>Use Python libraries:</li>
+<li><strong>NumPy</strong> for random number generation  </li>
+<li>
+<p><strong>Matplotlib</strong> or <strong>Seaborn</strong> for visualization</p>
+</li>
+<li>
+<p>Begin with simple populations (e.g., uniform or normal)  </p>
+</li>
+<li>Emphasize understanding of:</li>
+<li>Sample mean  </li>
+<li>Variance  </li>
+<li>Why CLT matters in real-world data analysis</li>
+</ul>
+<hr/>
+<p>This task encourages you to explore the Central Limit Theorem through computational simulations, helping build strong conceptual and practical understanding in statistics.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
