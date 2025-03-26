@@ -53,3 +53,4 @@ theta_values = [15, 30, 45, 60, 75]  # Different angles
 plot_projectile_motion(initial_velocity, theta_values)
 plot_range_vs_angle(initial_velocity)
 
+<!-- trigger workflow -->
