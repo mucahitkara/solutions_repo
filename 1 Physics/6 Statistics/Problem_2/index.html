@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>Problem 2 - Estimating Pi using Monte Carlo Methods - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "Problem 2 - Estimating Pi using Monte Carlo Methods";
         var mkdocs_page_input_path = "1 Physics/6 Statistics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -86,8 +86,22 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Problem 1 - Exploring the Central Limit Theorem through Simulations</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2 - Estimating Pi using Monte Carlo Methods</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#motivation">🔷 Motivation:</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#task">🔷 Task:</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#part-1-estimating-pi-using-a-circle">🔹 PART 1: Estimating \(\pi\) Using a Circle</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#part-2-estimating-pi-using-buffons-needle">🔹 PART 2: Estimating \(\pi\) Using Buffon’s Needle</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#deliverables">🔷 Deliverables:</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hints-and-resources">🔷 Hints and Resources:</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -165,7 +179,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">6 Statistics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">Problem 2 - Estimating Pi using Monte Carlo Methods</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -173,7 +187,105 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2">Problem 2</h1>
+<h1 id="problem-2-estimating-pi-using-monte-carlo-methods">Problem 2 - Estimating Pi using Monte Carlo Methods</h1>
+<h2 id="motivation">🔷 Motivation:</h2>
+<p>Monte Carlo simulations are a powerful class of computational techniques that use randomness to solve problems or estimate values.<br/>
+One of the most elegant applications is estimating the value of <span class="arithmatex">\(\pi\)</span> through geometric probability.</p>
+<p>By randomly generating points and analyzing their positions relative to a geometric shape, we can approximate <span class="arithmatex">\(\pi\)</span> in an intuitive and visually engaging way.</p>
+<p>This problem connects fundamental concepts of <strong>probability</strong>, <strong>geometry</strong>, and <strong>numerical computation</strong>.<br/>
+It also provides a gateway to understand how randomness can be harnessed to solve complex problems in physics, finance, and computer science.</p>
+<hr/>
+<h2 id="task">🔷 Task:</h2>
+<h3 id="part-1-estimating-pi-using-a-circle">🔹 PART 1: Estimating <span class="arithmatex">\(\pi\)</span> Using a Circle</h3>
+<h4 id="1-theoretical-foundation">1. Theoretical Foundation:</h4>
+<ul>
+<li>Explain how the ratio of points inside a circle to the total number of points in a square can be used to estimate <span class="arithmatex">\(\pi\)</span>.</li>
+<li>Derive the formula:<br/>
+  [
+  \pi \approx 4 \cdot \left(\frac{\text{points inside circle}}{\text{total points}}\right)
+  ]<br/>
+  for a unit circle.</li>
+</ul>
+<h4 id="2-simulation">2. Simulation:</h4>
+<ul>
+<li>Generate random points in a 2D square bounding a unit circle.</li>
+<li>Count the number of points falling inside the circle.</li>
+<li>Estimate <span class="arithmatex">\(\pi\)</span> based on this ratio.</li>
+</ul>
+<h4 id="3-visualization">3. Visualization:</h4>
+<ul>
+<li>Create a plot showing the randomly generated points.</li>
+<li>Distinguish between those <strong>inside</strong> and <strong>outside</strong> the circle.</li>
+</ul>
+<h4 id="4-analysis">4. Analysis:</h4>
+<ul>
+<li>Investigate how accuracy improves as the number of points increases.</li>
+<li>Discuss convergence rate and computational considerations.</li>
+</ul>
+<hr/>
+<h3 id="part-2-estimating-pi-using-buffons-needle">🔹 PART 2: Estimating <span class="arithmatex">\(\pi\)</span> Using Buffon’s Needle</h3>
+<h4 id="1-theoretical-foundation_1">1. Theoretical Foundation:</h4>
+<ul>
+<li>Describe Buffon’s Needle problem: estimate <span class="arithmatex">\(\pi\)</span> based on the probability of a needle crossing parallel lines.</li>
+<li>Derive the formula:<br/>
+  [
+  \pi \approx \frac{2 \cdot \text{needle length} \cdot \text{number of throws}}{\text{distance between lines} \cdot \text{number of crossings}}
+  ]</li>
+</ul>
+<h4 id="2-simulation_1">2. Simulation:</h4>
+<ul>
+<li>Simulate the random dropping of a needle on a plane with parallel lines.</li>
+<li>Count how many times the needle crosses a line.</li>
+<li>Estimate <span class="arithmatex">\(\pi\)</span> using the formula.</li>
+</ul>
+<h4 id="3-visualization_1">3. Visualization:</h4>
+<ul>
+<li>Create a graphical representation of the simulation.</li>
+<li>Show needle positions relative to the lines.</li>
+</ul>
+<h4 id="4-analysis_1">4. Analysis:</h4>
+<ul>
+<li>Explore how the number of drops affects accuracy.</li>
+<li>Compare convergence with the circle-based method.</li>
+</ul>
+<hr/>
+<h2 id="deliverables">🔷 Deliverables:</h2>
+<ol>
+<li>A Markdown document with:</li>
+<li>Clear explanations of both methods</li>
+<li>
+<p>Discussion of theoretical foundations and results</p>
+</li>
+<li>
+<p>Python scripts/notebooks:</p>
+</li>
+<li>Code for circle-based Monte Carlo simulation</li>
+<li>
+<p>Code for Buffon’s Needle simulation</p>
+</li>
+<li>
+<p>Graphical outputs:</p>
+</li>
+<li>Plots of random points (circle method)</li>
+<li>
+<p>Visualizations of needle positions (Buffon’s method)</p>
+</li>
+<li>
+<p>Analysis:</p>
+</li>
+<li>Tables/graphs showing convergence vs iterations</li>
+<li>Comparison of both methods in terms of accuracy &amp; efficiency</li>
+</ol>
+<hr/>
+<h2 id="hints-and-resources">🔷 Hints and Resources:</h2>
+<ul>
+<li>Use <strong>NumPy</strong> for random generation  </li>
+<li>Use <strong>Matplotlib</strong> for visualizations  </li>
+<li>Ensure uniform random point generation (for circle method)  </li>
+<li>In Buffon’s Needle:</li>
+<li>Pay attention to geometry: needle length vs distance between lines  </li>
+<li>Start with small iteration counts, then increase for convergence</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
