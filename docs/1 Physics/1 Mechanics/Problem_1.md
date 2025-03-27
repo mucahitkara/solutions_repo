@@ -69,7 +69,7 @@ The range depends on free parameters:
 
 Varying these parameters generates a family of solutions. For instance, increasing $v_0$ scales $R$ quadratically, while $g$ inversely affects $R$.
 
-![alt text](image-1.png)
+![alt text](image.png)
 
 ## 2. Analysis of the Range
 
@@ -108,7 +108,7 @@ $$
 
 Solve the quadratic equation for $t$, then compute $R = (v_0 \cos\theta) t$.
 
-![alt text](image-3.png)
+![alt text](image-1.png)
 
 - Max Range = 49.78 m at 39.0°
 
@@ -133,7 +133,7 @@ Analytical solutions are complex, so numerical methods (e.g., Euler or Runge-Kut
 Below is a Python script to simulate and visualize the range versus angle.
 
 
-![alt text](image.png)
+![alt text](image-2.png)
 
 
 - v0 = 10 m/s, Max Range at 45° = 10.19 m
