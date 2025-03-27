@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2# Escape Velocities and Cosmic Velocities - Physics and Mathematics</title>
+<title>Escape Velocities and Cosmic Velocities - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2# Escape Velocities and Cosmic Velocities";
+        var mkdocs_page_name = "Escape Velocities and Cosmic Velocities";
         var mkdocs_page_input_path = "1 Physics/2 Gravity/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -54,19 +54,45 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">2 Gravity</a>
 <ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../%23%20Escape%20Velocities%20and%20Cosmic%20Velocitie/"># Escape Velocities and Cosmic Velocitie</a>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Orbital Period and Orbital Radius: Kepler's Third Law</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2# Escape Velocities and Cosmic Velocities</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Escape Velocities and Cosmic Velocities</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#mathematical-derivation">Mathematical Derivation</a>
+<li class="toctree-l3"><a class="reference internal" href="#definitions-and-physical-meaning">Definitions and Physical Meaning</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#python-simulation">Python Simulation</a>
+<li class="toctree-l3"><a class="reference internal" href="#mathematical-derivations">Mathematical Derivations</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#first-cosmic-velocity-v_1">First Cosmic Velocity (\(v_1\))</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#results-and-analysis">Results and Analysis</a>
+<li class="toctree-l4"><a class="reference internal" href="#second-cosmic-velocity-v_2">Second Cosmic Velocity (\(v_2\))</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#third-cosmic-velocity-v_3">Third Cosmic Velocity (\(v_3\))</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters-affecting-these-velocities">Parameters Affecting These Velocities</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#calculations-for-celestial-bodies">Calculations for Celestial Bodies</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#earth">Earth</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#mars">Mars</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#jupiter">Jupiter</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#importance-in-space-exploration">Importance in Space Exploration</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-scripts-and-visualizations">Python Scripts and Visualizations</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#python-script-1-cosmic-velocities-bar-plot">Python Script 1: Cosmic Velocities Bar Plot</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-script-2-velocity-vs-massradius-ratio">Python Script 2: Velocity vs. Mass/Radius Ratio</a>
 </li>
 </ul>
 </li>
@@ -173,7 +199,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">2 Gravity</li>
-<li class="breadcrumb-item active">Problem 2# Escape Velocities and Cosmic Velocities</li>
+<li class="breadcrumb-item active">Escape Velocities and Cosmic Velocities</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -181,95 +207,135 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2-escape-velocities-and-cosmic-velocities">Problem 2# Escape Velocities and Cosmic Velocities</h1>
-<h2 id="introduction">Introduction</h2>
-<p>Escape velocity is a crucial concept in understanding how objects can overcome the gravitational pull of celestial bodies. The first, second, and third cosmic velocities define the minimum speeds required to:
-- Orbit a planet (first cosmic velocity)
-- Escape a planet’s gravity (second cosmic velocity)
-- Escape a star system (third cosmic velocity)</p>
-<p>These velocities are essential for satellite launches, planetary exploration, and interstellar travel.</p>
-<h2 id="mathematical-derivation">Mathematical Derivation</h2>
+<h1 id="escape-velocities-and-cosmic-velocities">Escape Velocities and Cosmic Velocities</h1>
+<h2 id="motivation">Motivation</h2>
+<p>The concept of escape velocity is fundamental to understanding how objects can break free from a celestial body's gravitational pull. Building on this, the first, second, and third cosmic velocities provide critical thresholds for orbiting a planet, escaping its gravity, and departing its star system, respectively. These velocities are essential for space exploration, governing satellite launches, interplanetary missions, and the theoretical framework for interstellar travel.</p>
+<hr/>
+<h2 id="definitions-and-physical-meaning">Definitions and Physical Meaning</h2>
 <ol>
-<li><strong>First Cosmic Velocity (Orbital Velocity)</strong>:
-   [
-   v_1 = \sqrt{\frac{G M}{R}}
-   ]
-   where:</li>
-<li><span class="arithmatex">\( G \)</span> is the gravitational constant (6.67430 × 10⁻¹¹ m³/kg/s²)</li>
-<li><span class="arithmatex">\( M \)</span> is the mass of the celestial body</li>
-<li>
-<p><span class="arithmatex">\( R \)</span> is the radius of the celestial body</p>
-</li>
-<li>
-<p><strong>Second Cosmic Velocity (Escape Velocity)</strong>:
-   [
-   v_2 = \sqrt{2 \frac{G M}{R}}
-   ]
-   This is derived from energy conservation, requiring an object’s kinetic energy to counteract gravitational potential energy.</p>
-</li>
-<li>
-<p><strong>Third Cosmic Velocity (Solar Escape Velocity)</strong>:
-   [
-   v_3 = \sqrt{2 \frac{G M_{sun}}{d} + v_2^2}
-   ]
-   This velocity allows an object to escape from the gravitational influence of a star (like the Sun) considering its initial velocity from a planetary surface.</p>
-</li>
+<li><strong>First Cosmic Velocity (<span class="arithmatex">\(v_1\)</span>)</strong>:  </li>
 </ol>
-<h2 id="python-simulation">Python Simulation</h2>
-<p>The following Python script calculates and visualizes the cosmic velocities for Earth, Mars, and Jupiter:</p>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-
-# Universal Gravitational Constant (m^3 kg^-1 s^-2)
-G = 6.67430e-11 
-
-# Dictionary of celestial bodies with mass (kg) and radius (m)
-celestial_bodies = {
-    "Earth": {"mass": 5.972e24, "radius": 6.371e6},
-    "Mars": {"mass": 6.417e23, "radius": 3.3895e6},
-    "Jupiter": {"mass": 1.898e27, "radius": 6.9911e7}
-}
-
-def escape_velocity(mass, radius):
-    return np.sqrt(2 * G * mass / radius)
-
-def orbital_velocity(mass, radius):
-    return np.sqrt(G * mass / radius)
-
-def solar_escape_velocity(mass, radius, sun_mass, sun_distance):
-    return np.sqrt(2 * G * sun_mass / sun_distance + escape_velocity(mass, radius)**2)
-
-# Compute velocities
-velocities = {}
-for planet, data in celestial_bodies.items():
-    ve = escape_velocity(data["mass"], data["radius"])  # Second cosmic velocity
-    v1 = orbital_velocity(data["mass"], data["radius"])  # First cosmic velocity
-    v3 = solar_escape_velocity(data["mass"], data["radius"], 1.989e30, 1.5e11)  # Third cosmic velocity (approx.)
-    velocities[planet] = {"v1": v1, "v2": ve, "v3": v3}
-
-# Plot results
-fig, ax = plt.subplots()
-planets = list(velocities.keys())
-v1_values = [velocities[p]["v1"] for p in planets]
-v2_values = [velocities[p]["v2"] for p in planets]
-v3_values = [velocities[p]["v3"] for p in planets]
-
-ax.bar(planets, v1_values, label="First Cosmic Velocity")
-ax.bar(planets, v2_values, bottom=v1_values, label="Second Cosmic Velocity")
-ax.bar(planets, v3_values, bottom=np.array(v1_values) + np.array(v2_values), label="Third Cosmic Velocity")
-
-ax.set_ylabel("Velocity (m/s)")
-ax.set_title("Comparison of Cosmic Velocities")
-ax.legend()
-plt.show()
-</code></pre>
-<h2 id="results-and-analysis">Results and Analysis</h2>
+<p>The minimum speed required for an object to achieve a stable circular orbit around a celestial body at its surface. It is essentially the orbital velocity at radius <span class="arithmatex">\(r = R\)</span>, where <span class="arithmatex">\(R\)</span> is the body's radius.</p>
+<ol>
+<li><strong>Second Cosmic Velocity (<span class="arithmatex">\(v_2\)</span>)</strong>:  </li>
+</ol>
+<p>Known as the escape velocity, this is the minimum speed needed to escape a celestial body’s gravitational field from its surface, reaching infinity with zero residual velocity.</p>
+<ol>
+<li><strong>Third Cosmic Velocity (<span class="arithmatex">\(v_3\)</span>)</strong>:  </li>
+</ol>
+<p>The minimum speed required to escape the gravitational influence of a star system (e.g., the Solar System) from a planet’s surface, assuming the planet is in a circular orbit around the star.</p>
+<hr/>
+<h2 id="mathematical-derivations">Mathematical Derivations</h2>
+<h3 id="first-cosmic-velocity-v_1">First Cosmic Velocity (<span class="arithmatex">\(v_1\)</span>)</h3>
+<p>The first cosmic velocity is derived from the condition for circular orbit, where gravitational force equals centripetal force: <span class="arithmatex">\(G M m / r^2 = m v^2 / r\)</span>. At the surface, <span class="arithmatex">\(r = R\)</span>:</p>
+<div class="arithmatex">\[
+G M / R^2 = v_1^2 / R
+\]</div>
+<p>Multiply by <span class="arithmatex">\(R\)</span>:</p>
+<div class="arithmatex">\[
+v_1^2 = G M / R
+\]</div>
+<p>Thus:</p>
+<div class="arithmatex">\[
+v_1 = \sqrt{G M / R}
+\]</div>
+<p>where <span class="arithmatex">\(G\)</span> is the gravitational constant, <span class="arithmatex">\(M\)</span> is the mass of the celestial body, and <span class="arithmatex">\(R\)</span> is its radius.</p>
+<h3 id="second-cosmic-velocity-v_2">Second Cosmic Velocity (<span class="arithmatex">\(v_2\)</span>)</h3>
+<p>The escape velocity is derived from conservation of energy. Total mechanical energy at the surface (kinetic + potential) must be zero at infinity:</p>
+<div class="arithmatex">\[
+\frac{1}{2} m v_2^2 - G M m / R = 0
+\]</div>
+<p>Simplify:</p>
+<div class="arithmatex">\[
+\frac{1}{2} v_2^2 = G M / R
+\]</div>
+<div class="arithmatex">\[
+v_2^2 = 2 G M / R
+\]</div>
+<p>Thus:</p>
+<div class="arithmatex">\[
+v_2 = \sqrt{2 G M / R}
+\]</div>
+<p>Note that <span class="arithmatex">\(v_2 = \sqrt{2} v_1\)</span>, meaning escape velocity is <span class="arithmatex">\(\sqrt{2}\)</span> times the orbital velocity.</p>
+<h3 id="third-cosmic-velocity-v_3">Third Cosmic Velocity (<span class="arithmatex">\(v_3\)</span>)</h3>
+<p>The third cosmic velocity is more complex, as it involves escaping the star’s gravitational field from a planet’s surface. For a planet in a circular orbit around a star (mass <span class="arithmatex">\(M_s\)</span>, orbital radius <span class="arithmatex">\(a\)</span>), the planet’s orbital velocity is <span class="arithmatex">\(v_p = \sqrt{G M_s / a}\)</span>. The total velocity to escape the Solar System from the planet’s surface combines:</p>
 <ul>
-<li>The first cosmic velocity is the smallest, allowing objects to remain in orbit.</li>
-<li>The second cosmic velocity is higher, enabling objects to leave planetary gravity.</li>
-<li>The third cosmic velocity is the highest, required to exit a star system.</li>
+<li>Escaping the planet: <span class="arithmatex">\(v_2 = \sqrt{2 G M / R}\)</span>.</li>
+<li>Matching the planet’s orbital velocity and exceeding the star’s escape velocity at <span class="arithmatex">\(a\)</span>.</li>
 </ul>
-<p>These velocities play a vital role in space missions, from launching satellites to planning interstellar travel.</p>
+<p>The escape velocity from the star’s field at distance <span class="arithmatex">\(a\)</span> is:</p>
+<div class="arithmatex">\[
+v_{\text{esc, star}} = \sqrt{2 G M_s / a}
+\]</div>
+<p>Assuming the launch is in the direction of the planet’s orbit, the approximate <span class="arithmatex">\(v_3\)</span> from the surface is:</p>
+<div class="arithmatex">\[
+v_3 \approx \sqrt{v_2^2 + (v_{\text{esc, star}} - v_p)^2}
+\]</div>
+<p>For Earth escaping the Sun:</p>
+<div class="arithmatex">\[
+v_3 \approx \sqrt{(11.2)^2 + (42.1 - 29.8)^2} \, \text{km/s}
+\]</div>
+<hr/>
+<h2 id="parameters-affecting-these-velocities">Parameters Affecting These Velocities</h2>
+<ul>
+<li><strong>Mass (<span class="arithmatex">\(M\)</span>)</strong>: Higher mass increases all velocities (<span class="arithmatex">\(v_1\)</span>, <span class="arithmatex">\(v_2\)</span>, <span class="arithmatex">\(v_3\)</span>).</li>
+<li><strong>Radius (<span class="arithmatex">\(R\)</span>)</strong>: Larger radius decreases <span class="arithmatex">\(v_1\)</span> and <span class="arithmatex">\(v_2\)</span> (inverse relationship).</li>
+<li><strong>Star’s Mass (<span class="arithmatex">\(M_s\)</span>) and Orbital Distance (<span class="arithmatex">\(a\)</span>)</strong>: For <span class="arithmatex">\(v_3\)</span>, a more massive star or smaller orbit increases the velocity needed to escape the system.</li>
+</ul>
+<hr/>
+<h2 id="calculations-for-celestial-bodies">Calculations for Celestial Bodies</h2>
+<h3 id="earth">Earth</h3>
+<ul>
+<li><span class="arithmatex">\(M = 5.972 \times 10^{24}\)</span> kg</li>
+<li><span class="arithmatex">\(R = 6.371 \times 10^6\)</span> m</li>
+<li><span class="arithmatex">\(G = 6.6743 \times 10^{-11}\)</span> m³ kg⁻¹ s⁻²</li>
+<li><span class="arithmatex">\(M_s = 1.989 \times 10^{30}\)</span> kg (Sun’s mass)</li>
+<li><span class="arithmatex">\(a = 1.496 \times 10^{11}\)</span> m (1 AU)</li>
+</ul>
+<div class="arithmatex">\[
+v_1 = \sqrt{G M / R} = \sqrt{(6.6743 \times 10^{-11}) (5.972 \times 10^{24}) / (6.371 \times 10^6)} \approx 7.91 \, \text{km/s}
+\]</div>
+<div class="arithmatex">\[
+v_2 = \sqrt{2 G M / R} = \sqrt{2} \cdot 7.91 \approx 11.19 \, \text{km/s}
+\]</div>
+<div class="arithmatex">\[
+v_3 \approx \sqrt{(11.19)^2 + (42.1 - 29.8)^2} \approx 16.6 \, \text{km/s}
+\]</div>
+<h3 id="mars">Mars</h3>
+<ul>
+<li><span class="arithmatex">\(M = 6.417 \times 10^{23}\)</span> kg</li>
+<li><span class="arithmatex">\(R = 3.39 \times 10^6\)</span> m</li>
+</ul>
+<div class="arithmatex">\[
+v_1 = \sqrt{(6.6743 \times 10^{-11}) (6.417 \times 10^{23}) / (3.39 \times 10^6)} \approx 3.55 \, \text{km/s}
+\]</div>
+<div class="arithmatex">\[
+v_2 = \sqrt{2} \cdot 3.55 \approx 5.02 \, \text{km/s}
+\]</div>
+<h3 id="jupiter">Jupiter</h3>
+<ul>
+<li><span class="arithmatex">\(M = 1.899 \times 10^{27}\)</span> kg</li>
+<li><span class="arithmatex">\(R = 6.991 \times 10^7\)</span> m</li>
+</ul>
+<div class="arithmatex">\[
+v_1 = \sqrt{(6.6743 \times 10^{-11}) (1.899 \times 10^{27}) / (6.991 \times 10^7)} \approx 42.6 \, \text{km/s}
+\]</div>
+<div class="arithmatex">\[
+v_2 = \sqrt{2} \cdot 42.6 \approx 60.2 \, \text{km/s}
+\]</div>
+<hr/>
+<h2 id="importance-in-space-exploration">Importance in Space Exploration</h2>
+<ol>
+<li><strong>Launching Satellites</strong>: <span class="arithmatex">\(v_1\)</span> determines the speed for low Earth orbit (e.g., 7.91 km/s). Rockets must exceed this, typically reaching 8-10 km/s with altitude.</li>
+<li><strong>Interplanetary Missions</strong>: <span class="arithmatex">\(v_2\)</span> (11.19 km/s for Earth) is the threshold for missions to Mars or the Moon. Additional velocity from Earth’s motion aids efficiency.</li>
+<li><strong>Interstellar Travel</strong>: <span class="arithmatex">\(v_3\)</span> (16.6 km/s from Earth) sets the bar for escaping the Solar System, as achieved by Voyager 1 using gravitational assists.</li>
+</ol>
+<hr/>
+<h2 id="python-scripts-and-visualizations">Python Scripts and Visualizations</h2>
+<h3 id="python-script-1-cosmic-velocities-bar-plot">Python Script 1: Cosmic Velocities Bar Plot</h3>
+<p><img alt="alt text" src="../image-3.png"/></p>
+<h2 id="python-script-2-velocity-vs-massradius-ratio">Python Script 2: Velocity vs. Mass/Radius Ratio</h2>
+<p><img alt="alt text" src="../image-4.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
