@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Interference Patterns on a Water Surface - Physics and Mathematics</title>
+<title>Interference Patterns of Waves on a Water Surface - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1 - Interference Patterns on a Water Surface";
+        var mkdocs_page_name = "Interference Patterns of Waves on a Water Surface";
         var mkdocs_page_input_path = "1 Physics/3 Waves/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -64,19 +64,35 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">3 Waves</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1 - Interference Patterns on a Water Surface</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Interference Patterns of Waves on a Water Surface</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#motivation">🔷 Motivation:</a>
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#task">🔷 Task:</a>
+<li class="toctree-l3"><a class="reference internal" href="#problem-statement">Problem Statement</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#problem-statement">🔷 Problem Statement:</a>
+<li class="toctree-l3"><a class="reference internal" href="#step-by-step-analysis">Step-by-Step Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-select-a-regular-polygon">1. Select a Regular Polygon</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#steps-to-follow">🔷 Steps to Follow:</a>
+<li class="toctree-l4"><a class="reference internal" href="#2-position-the-sources">2. Position the Sources</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#considerations">🔷 Considerations:</a>
+<li class="toctree-l4"><a class="reference internal" href="#3-wave-equations">3. Wave Equations</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#deliverables">🔷 Deliverables:</a>
+<li class="toctree-l4"><a class="reference internal" href="#4-superposition-of-waves">4. Superposition of Waves</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interference-patterns-analysis">Interference Patterns Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#constructive-and-destructive-interference">Constructive and Destructive Interference</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#time-evolution">Time Evolution</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-scripts-and-visualizations">Python Scripts and Visualizations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-script-2-time-evolution-of-displacement-at-a-point">Python Script 2: Time Evolution of Displacement at a Point</a>
 </li>
 </ul>
 </li>
@@ -175,7 +191,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">3 Waves</li>
-<li class="breadcrumb-item active">Problem 1 - Interference Patterns on a Water Surface</li>
+<li class="breadcrumb-item active">Interference Patterns of Waves on a Water Surface</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -183,79 +199,78 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1-interference-patterns-on-a-water-surface">Problem 1 - Interference Patterns on a Water Surface</h1>
-<h2 id="motivation">🔷 Motivation:</h2>
-<p>Interference occurs when waves from different sources overlap, creating new patterns.<br/>
-On a water surface, this can be easily observed when ripples from different points meet, forming distinctive interference patterns.<br/>
-These patterns can show us how waves combine in different ways, either reinforcing each other or canceling out.</p>
-<p>Studying these patterns helps us understand wave behavior in a simple, visual way.<br/>
-It also allows us to explore important concepts, like the relationship between wave phase and the effects of multiple sources.<br/>
-This task offers a hands-on approach to learning about wave interactions and their real-world applications.</p>
+<h1 id="interference-patterns-of-waves-on-a-water-surface">Interference Patterns of Waves on a Water Surface</h1>
+<h2 id="motivation">Motivation</h2>
+<p>Interference occurs when waves from different sources overlap, creating new patterns on a water surface. Ripples from multiple points form distinctive interference patterns, demonstrating how waves can reinforce (constructive interference) or cancel (destructive interference) each other. This phenomenon provides a visual way to study wave behavior, phase relationships, and the effects of multiple sources. Understanding these patterns is fundamental to wave physics, with applications in acoustics, optics, and fluid dynamics.</p>
 <hr/>
-<h2 id="task">🔷 Task:</h2>
-<p>A circular wave on the water surface, emanating from a point source located at <span class="arithmatex">\((x_0, y_0)\)</span>, can be described by the Single Disturbance equation:</p>
+<h2 id="problem-statement">Problem Statement</h2>
+<p>The task is to analyze the interference patterns formed on a water surface due to the superposition of waves emitted from point sources placed at the vertices of a chosen regular polygon. A single wave from a source at <span class="arithmatex">\((x_0, y_0)\)</span> is described by:</p>
 <div class="arithmatex">\[
 \eta(x, y, t) = \frac{A}{\sqrt{r}} \cdot \cos(kr - \omega t + \phi)
 \]</div>
-<p><strong>Where:</strong>
-- <span class="arithmatex">\(\eta(x, y, t)\)</span> = Displacement of the water surface at point <span class="arithmatex">\((x, y)\)</span> and time <span class="arithmatex">\(t\)</span><br/>
-- <span class="arithmatex">\(A\)</span> = Amplitude<br/>
-- <span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span> = Wave number, related to wavelength <span class="arithmatex">\(\lambda\)</span><br/>
-- <span class="arithmatex">\(\omega = 2\pi f\)</span> = Angular frequency, related to frequency <span class="arithmatex">\(f\)</span><br/>
-- <span class="arithmatex">\(r = \sqrt{(x - x_0)^2 + (y - y_0)^2}\)</span> = Distance to source<br/>
-- <span class="arithmatex">\(\phi\)</span> = Initial phase</p>
-<hr/>
-<h2 id="problem-statement">🔷 Problem Statement:</h2>
-<p>Analyze the interference patterns formed on the water surface due to the superposition of waves emitted from point sources placed at the vertices of a chosen regular polygon.</p>
-<hr/>
-<h2 id="steps-to-follow">🔷 Steps to Follow:</h2>
-<ol>
-<li>
-<p><strong>Select a Regular Polygon:</strong><br/>
-   Choose a regular polygon (e.g., equilateral triangle, square, pentagon).</p>
-</li>
-<li>
-<p><strong>Position the Sources:</strong><br/>
-   Place point wave sources at the vertices of the selected polygon.</p>
-</li>
-<li>
-<p><strong>Wave Equations:</strong><br/>
-   Write wave equations for each source, considering their positions.</p>
-</li>
-<li>
-<p><strong>Superposition of Waves:</strong><br/>
-   [
-   \eta_{\text{sum}}(x, y, t) = \sum_{i=1}^{N} \eta_i(x, y, t)
-   ]
-   where <span class="arithmatex">\(N\)</span> = number of sources (polygon vertices)</p>
-</li>
-<li>
-<p><strong>Analyze Interference Patterns:</strong><br/>
-   Examine <span class="arithmatex">\(\eta_{\text{sum}}(x, y, t)\)</span> over time and space. Identify:</p>
-</li>
-<li>Constructive interference (amplification)</li>
-<li>
-<p>Destructive interference (cancellation)</p>
-</li>
-<li>
-<p><strong>Visualization:</strong><br/>
-   Graphically represent wave patterns using simulations.</p>
-</li>
-</ol>
-<hr/>
-<h2 id="considerations">🔷 Considerations:</h2>
+<p>where:</p>
 <ul>
-<li>All sources emit waves with <strong>same amplitude <span class="arithmatex">\(A\)</span></strong>, <strong>wavelength <span class="arithmatex">\(\lambda\)</span></strong>, and <strong>frequency <span class="arithmatex">\(f\)</span></strong></li>
-<li>Waves are <strong>coherent</strong>, maintaining constant phase difference</li>
-<li>Visualization tools like <strong>Python + Matplotlib</strong> are recommended</li>
+<li><span class="arithmatex">\(\eta(x, y, t)\)</span> is the displacement of the water surface at point <span class="arithmatex">\((x, y)\)</span> and time <span class="arithmatex">\(t\)</span>,</li>
+<li><span class="arithmatex">\(A\)</span> is the amplitude,</li>
+<li><span class="arithmatex">\(k = 2\pi / \lambda\)</span> is the wave number, with wavelength <span class="arithmatex">\(\lambda\)</span>,</li>
+<li><span class="arithmatex">\(\omega = 2\pi f\)</span> is the angular frequency, with frequency <span class="arithmatex">\(f\)</span>,</li>
+<li><span class="arithmatex">\(r = \sqrt{(x - x_0)^2 + (y - y_0)^2}\)</span> is the distance from the source to <span class="arithmatex">\((x, y)\)</span>,</li>
+<li><span class="arithmatex">\(\phi\)</span> is the initial phase.</li>
 </ul>
+<p>The total displacement from <span class="arithmatex">\(N\)</span> sources (vertices of the polygon) is given by the principle of superposition:</p>
+<div class="arithmatex">\[
+\eta_{\text{sum}}(x, y, t) = \sum_{i=1}^N \eta_i(x, y, t)
+\]</div>
+<p>We assume all sources emit waves with the same <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(\lambda\)</span>, <span class="arithmatex">\(f\)</span>, and a constant phase difference (set <span class="arithmatex">\(\phi = 0\)</span> for simplicity).</p>
 <hr/>
-<h2 id="deliverables">🔷 Deliverables:</h2>
-<ol>
-<li>A <strong>Markdown</strong> document with embedded <strong>Python script / notebook</strong></li>
-<li>A clear explanation of interference patterns for your chosen polygon</li>
-<li><strong>Graphical results</strong> showing constructive &amp; destructive regions</li>
-</ol>
+<h2 id="step-by-step-analysis">Step-by-Step Analysis</h2>
+<h3 id="1-select-a-regular-polygon">1. Select a Regular Polygon</h3>
+<p>Let’s choose an equilateral triangle as the regular polygon, with vertices at <span class="arithmatex">\((x_i, y_i)\)</span> for <span class="arithmatex">\(i = 1, 2, 3\)</span>. Place the triangle centered at the origin with side length <span class="arithmatex">\(s = 2\)</span> m:</p>
+<ul>
+<li>Vertex 1: <span class="arithmatex">\((0, 1)\)</span></li>
+<li>Vertex 2: <span class="arithmatex">\((\sqrt{3}/2, -1/2)\)</span></li>
+<li>Vertex 3: <span class="arithmatex">\((-\sqrt{3}/2, -1/2)\)</span></li>
+</ul>
+<h3 id="2-position-the-sources">2. Position the Sources</h3>
+<p>The wave sources are placed at these vertices, so <span class="arithmatex">\((x_1, y_1) = (0, 1)\)</span>, <span class="arithmatex">\((x_2, y_2) = (\sqrt{3}/2, -1/2)\)</span>, and <span class="arithmatex">\((x_3, y_3) = (-\sqrt{3}/2, -1/2)\)</span>.</p>
+<h3 id="3-wave-equations">3. Wave Equations</h3>
+<p>For each source <span class="arithmatex">\(i\)</span>, the wave equation is:</p>
+<div class="arithmatex">\[
+\eta_i(x, y, t) = \frac{A}{\sqrt{r_i}} \cos(k r_i - \omega t)
+\]</div>
+<p>where <span class="arithmatex">\(r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}\)</span>. We set <span class="arithmatex">\(A = 1\)</span> m, <span class="arithmatex">\(\lambda = 0.5\)</span> m, <span class="arithmatex">\(f = 1\)</span> Hz, so:</p>
+<ul>
+<li><span class="arithmatex">\(k = 2\pi / \lambda = 4\pi\)</span> rad/m,</li>
+<li><span class="arithmatex">\(\omega = 2\pi f = 2\pi\)</span> rad/s.</li>
+</ul>
+<h3 id="4-superposition-of-waves">4. Superposition of Waves</h3>
+<p>The total displacement is:</p>
+<div class="arithmatex">\[
+\eta_{\text{sum}}(x, y, t) = \sum_{i=1}^3 \frac{A}{\sqrt{r_i}} \cos(k r_i - \omega t)
+\]</div>
+<hr/>
+<h2 id="interference-patterns-analysis">Interference Patterns Analysis</h2>
+<h3 id="constructive-and-destructive-interference">Constructive and Destructive Interference</h3>
+<ul>
+<li><strong>Constructive Interference</strong>: Occurs when waves are in phase, i.e., <span class="arithmatex">\(|k(r_i - r_j)| = 2n\pi\)</span> for integer <span class="arithmatex">\(n\)</span>. The path difference <span class="arithmatex">\(\Delta r = |r_i - r_j|\)</span> must satisfy:</li>
+</ul>
+<p>$$
+  \Delta r = n \lambda
+  $$</p>
+<ul>
+<li><strong>Destructive Interference</strong>: Occurs when waves are out of phase by <span class="arithmatex">\(\pi\)</span>, i.e., <span class="arithmatex">\(|k(r_i - r_j)| = (2n+1)\pi\)</span>, so:</li>
+</ul>
+<p>$$
+  \Delta r = (n + 1/2) \lambda
+  $$</p>
+<p>For our setup, <span class="arithmatex">\(\lambda = 0.5\)</span> m, so constructive interference occurs at <span class="arithmatex">\(\Delta r = 0, 0.5, 1, \ldots\)</span> m, and destructive interference at <span class="arithmatex">\(\Delta r = 0.25, 0.75, \ldots\)</span> m.</p>
+<h3 id="time-evolution">Time Evolution</h3>
+<p>At a fixed time <span class="arithmatex">\(t\)</span>, the pattern depends on the spatial variation of <span class="arithmatex">\(r_i\)</span>. As <span class="arithmatex">\(t\)</span> changes, the pattern oscillates with frequency <span class="arithmatex">\(f\)</span>, creating a dynamic interference field.</p>
+<hr/>
+<h2 id="python-scripts-and-visualizations">Python Scripts and Visualizations</h2>
+<p><img alt="alt text" src="../image.png"/></p>
+<h2 id="python-script-2-time-evolution-of-displacement-at-a-point">Python Script 2: Time Evolution of Displacement at a Point</h2>
+<p><img alt="alt text" src="../image-1.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
