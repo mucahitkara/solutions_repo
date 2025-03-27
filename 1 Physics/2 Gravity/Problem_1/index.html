@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Orbital Period and Orbital Radius - Physics and Mathematics</title>
+<title>Orbital Period and Orbital Radius: Kepler's Third Law - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Orbital Period and Orbital Radius";
+        var mkdocs_page_name = "Orbital Period and Orbital Radius: Kepler\u0027s Third Law";
         var mkdocs_page_input_path = "1 Physics/2 Gravity/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -56,15 +56,33 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../%23%20Escape%20Velocities%20and%20Cosmic%20Velocitie/"># Escape Velocities and Cosmic Velocitie</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Orbital Period and Orbital Radius</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Orbital Period and Orbital Radius: Kepler's Third Law</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#mathematical-derivation">Mathematical Derivation</a>
+<li class="toctree-l3"><a class="reference internal" href="#task-overview">Task Overview</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#python-simulation">Python Simulation</a>
+<li class="toctree-l3"><a class="reference internal" href="#1-derivation-of-keplers-third-law">1. Derivation of Kepler’s Third Law</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#results-and-analysis">Results and Analysis</a>
+<li class="toctree-l3"><a class="reference internal" href="#2-implications-of-keplers-third-law">2. Implications of Kepler's Third Law</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#real-world-example-the-moons-orbit-around-earth">Real-World Example: The Moon’s Orbit Around Earth</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-computational-model-to-simulate-circular-orbits">3. Computational Model to Simulate Circular Orbits</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#code-1-simulating-a-circular-orbit-using-numerical-integration">Code 1: Simulating a Circular Orbit Using Numerical Integration</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-testing-keplers-third-law">4. Testing Kepler’s Third Law</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-extension-to-elliptical-orbits">5. Extension to Elliptical Orbits</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#code-3-simulating-an-elliptical-orbit">Code 3: Simulating an Elliptical Orbit</a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -173,7 +191,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">2 Gravity</li>
-<li class="breadcrumb-item active">Orbital Period and Orbital Radius</li>
+<li class="breadcrumb-item active">Orbital Period and Orbital Radius: Kepler's Third Law</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -181,88 +199,100 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="orbital-period-and-orbital-radius">Orbital Period and Orbital Radius</h1>
-<h2 id="introduction">Introduction</h2>
-<p>The relationship between the square of the orbital period and the cube of the orbital radius, known as <strong>Kepler's Third Law</strong>, is a fundamental principle of celestial mechanics. This relationship allows us to understand planetary motions and gravitational interactions on both local and cosmic scales. </p>
-<p>Kepler’s Third Law states that for an object in a circular orbit around a massive central body:
-[
-T^2 \propto R^3
-]
-where:
-- <span class="arithmatex">\(T\)</span> is the orbital period (time taken to complete one orbit)
-- <span class="arithmatex">\(R\)</span> is the orbital radius (distance from the central body)</p>
-<p>This law is crucial for calculating planetary masses, satellite trajectories, and space missions.</p>
-<h2 id="mathematical-derivation">Mathematical Derivation</h2>
-<p>Using Newton’s Law of Gravitation:
-[
-F = \frac{G M m}{R^2}
-]
-and equating it to the centripetal force required for circular motion:
-[
-\frac{G M m}{R^2} = \frac{m v^2}{R}
-]
-Solving for the velocity <span class="arithmatex">\(v\)</span>:
-[
-v = \sqrt{\frac{G M}{R}}
-]
-Since the orbital period <span class="arithmatex">\(T\)</span> is related to the velocity by:
-[
-T = \frac{2 \pi R}{v}
-]
-Substituting for <span class="arithmatex">\(v\)</span>:
-[
-T^2 = \frac{4 \pi^2 R^3}{G M}
-]
-Thus, confirming Kepler’s Third Law:
-[
-T^2 \propto R^3
-]</p>
-<h2 id="python-simulation">Python Simulation</h2>
-<p>The following Python script simulates circular orbits and verifies Kepler’s Third Law numerically.</p>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-
-# Constants
-G = 6.67430e-11  # Gravitational constant (m^3/kg/s^2)
-M_sun = 1.989e30  # Mass of the Sun (kg)
-
-# Define planets with their average orbital radii (m) and periods (s)
-planets = {
-    "Mercury": (5.79e10, 7.60e6),
-    "Venus": (1.08e11, 1.94e7),
-    "Earth": (1.50e11, 3.15e7),
-    "Mars": (2.28e11, 5.94e7),
-    "Jupiter": (7.78e11, 3.74e8),
-    "Saturn": (1.43e12, 9.29e8),
-    "Uranus": (2.87e12, 2.65e9),
-    "Neptune": (4.50e12, 5.20e9)
-}
-
-# Extract data for plotting
-radii = np.array([data[0] for data in planets.values()])
-periods = np.array([data[1] for data in planets.values()])
-
-# Verify Kepler’s Third Law
-kepler_ratio = periods**2 / radii**3
-
-# Plot results
-plt.figure(figsize=(8, 6))
-plt.scatter(radii, periods**2, label="T^2 vs R^3 Data", color='blue')
-plt.plot(radii, (4 * np.pi**2 / (G * M_sun)) * radii**3, linestyle='--', label="Kepler’s Law Fit", color='red')
-plt.xlabel("Orbital Radius (m)")
-plt.ylabel("Orbital Period Squared (s²)")
-plt.title("Verification of Kepler’s Third Law")
-plt.legend()
-plt.grid()
-plt.show()
-</code></pre>
-<h2 id="results-and-analysis">Results and Analysis</h2>
+<h1 id="orbital-period-and-orbital-radius-keplers-third-law">Orbital Period and Orbital Radius: Kepler's Third Law</h1>
+<h2 id="motivation">Motivation</h2>
+<p>The relationship between the square of the orbital period and the cube of the orbital radius, known as <strong>Kepler's Third Law</strong>, is a cornerstone of celestial mechanics. This law allows for the determination of planetary motions and has broad implications for understanding gravitational interactions both on local and cosmic scales. By analyzing this relationship, we can connect fundamental principles of gravity with real-world phenomena such as satellite orbits and planetary systems.</p>
+<h2 id="task-overview">Task Overview</h2>
+<p>The task involves deriving the relationship between the square of the orbital period and the cube of the orbital radius for circular orbits. We will explore the implications of this law in astronomy, investigate real-world examples, and implement a computational model to simulate circular orbits and verify this relationship.</p>
+<hr/>
+<h2 id="1-derivation-of-keplers-third-law">1. Derivation of Kepler’s Third Law</h2>
+<p>For a body in a circular orbit, the centripetal force required to keep the body moving in orbit is provided by the gravitational force. This is expressed as:</p>
+<div class="arithmatex">\[
+F_{\text{centripetal}} = F_{\text{gravitational}}
+\]</div>
+<p>The centripetal force is given by:</p>
+<div class="arithmatex">\[
+F_{\text{centripetal}} = \frac{m v^2}{r}
+\]</div>
+<p>where:</p>
 <ul>
-<li>The simulation confirms that the square of the orbital period is proportional to the cube of the orbital radius.</li>
-<li>The scatter plot and theoretical curve demonstrate Kepler’s Third Law in action.</li>
-<li>This relationship is fundamental for space missions, satellite deployment, and astrophysics.</li>
+<li><span class="arithmatex">\(m\)</span> is the mass of the orbiting body,</li>
+<li><span class="arithmatex">\(v\)</span> is the orbital velocity,</li>
+<li><span class="arithmatex">\(r\)</span> is the orbital radius.</li>
 </ul>
-<p>Understanding Kepler’s laws helps scientists estimate planetary masses, satellite orbits, and even exoplanetary systems in distant galaxies.</p>
+<p>The gravitational force is:</p>
+<div class="arithmatex">\[
+F_{\text{gravitational}} = \frac{G M m}{r^2}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(G\)</span> is the gravitational constant,</li>
+<li><span class="arithmatex">\(M\)</span> is the mass of the central body (e.g., the Sun),</li>
+<li><span class="arithmatex">\(r\)</span> is the orbital radius.</li>
+</ul>
+<p>By equating the two forces:</p>
+<div class="arithmatex">\[
+\frac{m v^2}{r} = \frac{G M m}{r^2}
+\]</div>
+<p>Simplifying:</p>
+<div class="arithmatex">\[
+v^2 = \frac{G M}{r}
+\]</div>
+<p>Now, the velocity is related to the orbital period <span class="arithmatex">\(T\)</span> by:</p>
+<div class="arithmatex">\[
+v = \frac{2\pi r}{T}
+\]</div>
+<p>Substituting this into the above equation:</p>
+<div class="arithmatex">\[
+\left(\frac{2\pi r}{T}\right)^2 = \frac{G M}{r}
+\]</div>
+<p>Simplifying further:</p>
+<div class="arithmatex">\[
+\frac{4\pi^2 r^2}{T^2} = \frac{G M}{r}
+\]</div>
+<p>Now, solve for <span class="arithmatex">\(T^2\)</span>:</p>
+<div class="arithmatex">\[
+T^2 = \frac{4\pi^2 r^3}{G M}
+\]</div>
+<p>This is the relationship between the orbital period squared (<span class="arithmatex">\(T^2\)</span>) and the orbital radius cubed (<span class="arithmatex">\(r^3\)</span>), which is Kepler's Third Law:</p>
+<div class="arithmatex">\[
+T^2 \propto r^3
+\]</div>
+<hr/>
+<h2 id="2-implications-of-keplers-third-law">2. Implications of Kepler's Third Law</h2>
+<p>Kepler’s Third Law provides several important insights into the motion of celestial bodies:</p>
+<ul>
+<li><strong>Planetary Masses</strong>: By measuring the orbital period and radius of a satellite or planet, the mass of the central body (e.g., the Sun or Earth) can be determined.</li>
+<li><strong>Orbital Distances</strong>: The law helps calculate the distance of a planet or moon from the central star or planet based on its orbital period.</li>
+<li><strong>Satellite Orbits</strong>: Kepler’s Third Law is used extensively in satellite communication and space exploration, determining satellite orbital periods for given altitudes.</li>
+</ul>
+<h3 id="real-world-example-the-moons-orbit-around-earth">Real-World Example: The Moon’s Orbit Around Earth</h3>
+<p>The Moon orbits Earth at an average distance of <span class="arithmatex">\(r = 3.84 \times 10^8\)</span> meters and has an orbital period of approximately <span class="arithmatex">\(T = 27.3\)</span> days. Using Kepler's Third Law:</p>
+<div class="arithmatex">\[
+T^2 = \frac{4\pi^2 r^3}{G M}
+\]</div>
+<p>Substituting the values for <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(M\)</span> (the mass of Earth):</p>
+<div class="arithmatex">\[
+T = \sqrt{\frac{4\pi^2 (3.84 \times 10^8)^3}{(6.67430 \times 10^{-11}) (5.972 \times 10^{24})}}
+\]</div>
+<p>This confirms that Kepler's Third Law can be used to accurately predict the Moon's orbital period.</p>
+<hr/>
+<h2 id="3-computational-model-to-simulate-circular-orbits">3. Computational Model to Simulate Circular Orbits</h2>
+<p>Below is a Python script to simulate the motion of a planet in a circular orbit using Newtonian mechanics. This simulation will help visualize the orbital motion and verify Kepler's Third Law.</p>
+<h3 id="code-1-simulating-a-circular-orbit-using-numerical-integration">Code 1: Simulating a Circular Orbit Using Numerical Integration</h3>
+<p><img alt="alt text" src="../image.png"/></p>
+<h2 id="4-testing-keplers-third-law">4. Testing  Kepler’s Third Law</h2>
+<p>We can now test the proportionality <span class="arithmatex">\(T^2 \propto r^3\)</span> numerically.</p>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<h2 id="5-extension-to-elliptical-orbits">5. Extension to Elliptical Orbits</h2>
+<p>For elliptical orbits, <strong>Kepler’s Third Law</strong> still holds, but we replace the orbital radius <span class="arithmatex">\(r\)</span> with the <strong>semi-major axis</strong> <span class="arithmatex">\(a\)</span>:</p>
+<div class="arithmatex">\[
+T^2 = \frac{4\pi^2}{G M} a^3
+\]</div>
+<p>This is the general form of Kepler’s Third Law for elliptical orbits, and it allows us to calculate the orbital period of objects in elliptical orbits, such as the planets in the Solar System.</p>
+<hr/>
+<h3 id="code-3-simulating-an-elliptical-orbit">Code 3: Simulating an Elliptical Orbit</h3>
+<p><img alt="alt text" src="../image-2.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
