@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Orbital Period and Orbital Radius: Kepler's Third Law - Physics and Mathematics</title>
+<title>Investigating the Range as a Function of the Angle of Projection - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Orbital Period and Orbital Radius: Kepler\u0027s Third Law";
+        var mkdocs_page_name = "Investigating the Range as a Function of the Angle of Projection";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -46,33 +46,39 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal current">1 Mechanics</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Orbital Period and Orbital Radius: Kepler's Third Law</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Investigating the Range as a Function of the Angle of Projection</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#task-overview">Task Overview</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#1-derivation-of-keplers-third-law">1. Derivation of Kepler’s Third Law</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#2-implications-of-keplers-third-law">2. Implications of Kepler's Third Law</a>
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#real-world-example-the-moons-orbit-around-earth">Real-World Example: The Moon’s Orbit Around Earth</a>
+<li class="toctree-l4"><a class="reference internal" href="#11-deriving-the-equations-of-motion">1.1 Deriving the Equations of Motion</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#12-time-of-flight">1.2 Time of Flight</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#13-range-equation">1.3 Range Equation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#14-family-of-solutions">1.4 Family of Solutions</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#3-computational-model-to-simulate-circular-orbits">3. Computational Model to Simulate Circular Orbits</a>
+<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-the-range">2. Analysis of the Range</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#code-1-simulating-a-circular-orbit-using-numerical-integration">Code 1: Simulating a Circular Orbit Using Numerical Integration</a>
+<li class="toctree-l4"><a class="reference internal" href="#21-dependence-on-angle-theta">2.1 Dependence on Angle \(\theta\)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#22-influence-of-parameters">2.2 Influence of Parameters</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#4-testing-keplers-third-law">4. Testing Kepler’s Third Law</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#5-extension-to-elliptical-orbits">5. Extension to Elliptical Orbits</a>
+<li class="toctree-l3"><a class="reference internal" href="#3-practical-applications">3. Practical Applications</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#code-3-simulating-an-elliptical-orbit">Code 3: Simulating an Elliptical Orbit</a>
+<li class="toctree-l4"><a class="reference internal" href="#31-uneven-terrain">3.1 Uneven Terrain</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#32-air-resistance">3.2 Air Resistance</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#33-real-world-examples">3.3 Real-World Examples</a>
 </li>
 </ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-implementation">4. Implementation</a>
 </li>
 </ul>
 </li>
@@ -189,7 +195,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Orbital Period and Orbital Radius: Kepler's Third Law</li>
+<li class="breadcrumb-item active">Investigating the Range as a Function of the Angle of Projection</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -197,100 +203,119 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="orbital-period-and-orbital-radius-keplers-third-law">Orbital Period and Orbital Radius: Kepler's Third Law</h1>
-<h2 id="motivation">Motivation</h2>
-<p>The relationship between the square of the orbital period and the cube of the orbital radius, known as <strong>Kepler's Third Law</strong>, is a cornerstone of celestial mechanics. This law allows for the determination of planetary motions and has broad implications for understanding gravitational interactions both on local and cosmic scales. By analyzing this relationship, we can connect fundamental principles of gravity with real-world phenomena such as satellite orbits and planetary systems.</p>
-<h2 id="task-overview">Task Overview</h2>
-<p>The task involves deriving the relationship between the square of the orbital period and the cube of the orbital radius for circular orbits. We will explore the implications of this law in astronomy, investigate real-world examples, and implement a computational model to simulate circular orbits and verify this relationship.</p>
-<hr/>
-<h2 id="1-derivation-of-keplers-third-law">1. Derivation of Kepler’s Third Law</h2>
-<p>For a body in a circular orbit, the centripetal force required to keep the body moving in orbit is provided by the gravitational force. This is expressed as:</p>
-<div class="arithmatex">\[
-F_{\text{centripetal}} = F_{\text{gravitational}}
-\]</div>
-<p>The centripetal force is given by:</p>
-<div class="arithmatex">\[
-F_{\text{centripetal}} = \frac{m v^2}{r}
-\]</div>
-<p>where:</p>
+<h1 id="investigating-the-range-as-a-function-of-the-angle-of-projection">Investigating the Range as a Function of the Angle of Projection</h1>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
+<p>Projectile motion describes the trajectory of an object under the influence of gravity, assuming no other forces (e.g., air resistance) act upon it. Let’s derive the governing equations from first principles.</p>
+<h3 id="11-deriving-the-equations-of-motion">1.1 Deriving the Equations of Motion</h3>
+<p>The motion can be split into horizontal (x) and vertical (y) components. Assume the projectile is launched from the origin <span class="arithmatex">\((x_0, y_0) = (0, 0)\)</span> with an initial velocity <span class="arithmatex">\(v_0\)</span> at an angle <span class="arithmatex">\(\theta\)</span> from the horizontal. The acceleration due to gravity is <span class="arithmatex">\(g\)</span>, acting downward.</p>
 <ul>
-<li><span class="arithmatex">\(m\)</span> is the mass of the orbiting body,</li>
-<li><span class="arithmatex">\(v\)</span> is the orbital velocity,</li>
-<li><span class="arithmatex">\(r\)</span> is the orbital radius.</li>
+<li>
+<p><strong>Initial velocities:</strong></p>
+</li>
+<li>
+<p>Horizontal: <span class="arithmatex">\(v_{0x} = v_0 \cos\theta\)</span></p>
+</li>
+<li>
+<p>Vertical: <span class="arithmatex">\(v_{0y} = v_0 \sin\theta\)</span></p>
+</li>
+<li>
+<p><strong>Accelerations:</strong></p>
+</li>
+<li>
+<p>Horizontal: <span class="arithmatex">\(a_x = 0\)</span> (no horizontal forces)</p>
+</li>
+<li>Vertical: <span class="arithmatex">\(a_y = -g\)</span></li>
 </ul>
-<p>The gravitational force is:</p>
-<div class="arithmatex">\[
-F_{\text{gravitational}} = \frac{G M m}{r^2}
-\]</div>
-<p>where:</p>
+<p>Using Newton’s equations of motion, the position as a function of time <span class="arithmatex">\(t\)</span> is:</p>
 <ul>
-<li><span class="arithmatex">\(G\)</span> is the gravitational constant,</li>
-<li><span class="arithmatex">\(M\)</span> is the mass of the central body (e.g., the Sun),</li>
-<li><span class="arithmatex">\(r\)</span> is the orbital radius.</li>
+<li>Horizontal: <span class="arithmatex">\(x(t) = v_{0x} t = (v_0 \cos\theta) t\)</span></li>
+<li>Vertical: <span class="arithmatex">\(y(t) = v_{0y} t + \frac{1}{2} a_y t^2 = (v_0 \sin\theta) t - \frac{1}{2} g t^2\)</span></li>
 </ul>
-<p>By equating the two forces:</p>
+<h3 id="12-time-of-flight">1.2 Time of Flight</h3>
+<p>The projectile returns to the ground when <span class="arithmatex">\(y(t) = 0\)</span>:</p>
 <div class="arithmatex">\[
-\frac{m v^2}{r} = \frac{G M m}{r^2}
+(v_0 \sin\theta) t - \frac{1}{2} g t^2 = 0
 \]</div>
-<p>Simplifying:</p>
+<p>Factorizing:</p>
 <div class="arithmatex">\[
-v^2 = \frac{G M}{r}
+t \left( v_0 \sin\theta - \frac{1}{2} g t \right) = 0
 \]</div>
-<p>Now, the velocity is related to the orbital period <span class="arithmatex">\(T\)</span> by:</p>
+<p>Solutions: <span class="arithmatex">\(t = 0\)</span> (launch) or <span class="arithmatex">\(t = \frac{2 v_0 \sin\theta}{g}\)</span> (landing). Thus, the time of flight <span class="arithmatex">\(T\)</span> is:</p>
 <div class="arithmatex">\[
-v = \frac{2\pi r}{T}
+T = \frac{2 v_0 \sin\theta}{g}
 \]</div>
-<p>Substituting this into the above equation:</p>
+<h3 id="13-range-equation">1.3 Range Equation</h3>
+<p>The horizontal range <span class="arithmatex">\(R\)</span> is the distance traveled when <span class="arithmatex">\(t = T\)</span>:</p>
 <div class="arithmatex">\[
-\left(\frac{2\pi r}{T}\right)^2 = \frac{G M}{r}
+R = v_{0x} T = (v_0 \cos\theta) \cdot \frac{2 v_0 \sin\theta}{g}
 \]</div>
-<p>Simplifying further:</p>
+<p>Using the trigonometric identity <span class="arithmatex">\(2 \sin\theta \cos\theta = \sin 2\theta\)</span>:</p>
 <div class="arithmatex">\[
-\frac{4\pi^2 r^2}{T^2} = \frac{G M}{r}
+R = \frac{v_0^2 \sin 2\theta}{g}
 \]</div>
-<p>Now, solve for <span class="arithmatex">\(T^2\)</span>:</p>
-<div class="arithmatex">\[
-T^2 = \frac{4\pi^2 r^3}{G M}
-\]</div>
-<p>This is the relationship between the orbital period squared (<span class="arithmatex">\(T^2\)</span>) and the orbital radius cubed (<span class="arithmatex">\(r^3\)</span>), which is Kepler's Third Law:</p>
-<div class="arithmatex">\[
-T^2 \propto r^3
-\]</div>
-<hr/>
-<h2 id="2-implications-of-keplers-third-law">2. Implications of Kepler's Third Law</h2>
-<p>Kepler’s Third Law provides several important insights into the motion of celestial bodies:</p>
+<p>This is the range as a function of the angle of projection <span class="arithmatex">\(\theta\)</span>.</p>
+<h3 id="14-family-of-solutions">1.4 Family of Solutions</h3>
+<p>The range depends on free parameters:</p>
 <ul>
-<li><strong>Planetary Masses</strong>: By measuring the orbital period and radius of a satellite or planet, the mass of the central body (e.g., the Sun or Earth) can be determined.</li>
-<li><strong>Orbital Distances</strong>: The law helps calculate the distance of a planet or moon from the central star or planet based on its orbital period.</li>
-<li><strong>Satellite Orbits</strong>: Kepler’s Third Law is used extensively in satellite communication and space exploration, determining satellite orbital periods for given altitudes.</li>
+<li><span class="arithmatex">\(v_0\)</span>: Initial velocity</li>
+<li><span class="arithmatex">\(g\)</span>: Gravitational acceleration</li>
+<li><span class="arithmatex">\(\theta\)</span>: Angle of projection</li>
 </ul>
-<h3 id="real-world-example-the-moons-orbit-around-earth">Real-World Example: The Moon’s Orbit Around Earth</h3>
-<p>The Moon orbits Earth at an average distance of <span class="arithmatex">\(r = 3.84 \times 10^8\)</span> meters and has an orbital period of approximately <span class="arithmatex">\(T = 27.3\)</span> days. Using Kepler's Third Law:</p>
+<p>Varying these parameters generates a family of solutions. For instance, increasing <span class="arithmatex">\(v_0\)</span> scales <span class="arithmatex">\(R\)</span> quadratically, while <span class="arithmatex">\(g\)</span> inversely affects <span class="arithmatex">\(R\)</span>.</p>
+<p><img alt="alt text" src="image-1.png"/></p>
+<h2 id="2-analysis-of-the-range">2. Analysis of the Range</h2>
+<h3 id="21-dependence-on-angle-theta">2.1 Dependence on Angle <span class="arithmatex">\(\theta\)</span></h3>
+<p>The term <span class="arithmatex">\(\sin 2\theta\)</span> dictates the angular dependence:</p>
+<ul>
+<li>At <span class="arithmatex">\(\theta = 0^\circ\)</span> or <span class="arithmatex">\(90^\circ\)</span>, <span class="arithmatex">\(\sin 2\theta = 0\)</span>, so <span class="arithmatex">\(R = 0\)</span>.</li>
+<li>Maximum range occurs when <span class="arithmatex">\(\sin 2\theta = 1\)</span>, i.e., <span class="arithmatex">\(2\theta = 90^\circ\)</span>, or <span class="arithmatex">\(\theta = 45^\circ\)</span>:</li>
+</ul>
 <div class="arithmatex">\[
-T^2 = \frac{4\pi^2 r^3}{G M}
+R_{\text{max}} = \frac{v_0^2}{g}
 \]</div>
-<p>Substituting the values for <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(M\)</span> (the mass of Earth):</p>
+<ul>
+<li>Complementary angles (e.g., <span class="arithmatex">\(30^\circ\)</span> and <span class="arithmatex">\(60^\circ\)</span>) yield the same range since <span class="arithmatex">\(\sin(180^\circ - 2\theta) = \sin 2\theta\)</span>.</li>
+</ul>
+<h3 id="22-influence-of-parameters">2.2 Influence of Parameters</h3>
+<ul>
+<li><strong>Initial Velocity (<span class="arithmatex">\(v_0\)</span>)</strong>: <span class="arithmatex">\(R \propto v_0^2\)</span>. Doubling <span class="arithmatex">\(v_0\)</span> quadruples the range.</li>
+<li><strong>Gravity (<span class="arithmatex">\(g\)</span>)</strong>: <span class="arithmatex">\(R \propto \frac{1}{g}\)</span>. On the Moon (<span class="arithmatex">\(g \approx 1.62 \, \text{m/s}^2\)</span>), the range is ~6 times larger than on Earth (<span class="arithmatex">\(g \approx 9.81 \, \text{m/s}^2\)</span>).</li>
+</ul>
+<h2 id="3-practical-applications">3. Practical Applications</h2>
+<h3 id="31-uneven-terrain">3.1 Uneven Terrain</h3>
+<p>For a launch height <span class="arithmatex">\(h\)</span>, the vertical displacement becomes:
+$$
+y(t) = h + (v_0 \sin\theta) t - \frac{1}{2} g t^2
+$$</p>
+<p>Set <span class="arithmatex">\(y(t) = 0\)</span> to find the new time of flight:</p>
 <div class="arithmatex">\[
-T = \sqrt{\frac{4\pi^2 (3.84 \times 10^8)^3}{(6.67430 \times 10^{-11}) (5.972 \times 10^{24})}}
+\frac{1}{2} g t^2 - (v_0 \sin\theta) t - h = 0
 \]</div>
-<p>This confirms that Kepler's Third Law can be used to accurately predict the Moon's orbital period.</p>
-<hr/>
-<h2 id="3-computational-model-to-simulate-circular-orbits">3. Computational Model to Simulate Circular Orbits</h2>
-<p>Below is a Python script to simulate the motion of a planet in a circular orbit using Newtonian mechanics. This simulation will help visualize the orbital motion and verify Kepler's Third Law.</p>
-<h3 id="code-1-simulating-a-circular-orbit-using-numerical-integration">Code 1: Simulating a Circular Orbit Using Numerical Integration</h3>
-<p><img alt="alt text" src="image-8.png"/></p>
-<h2 id="4-testing-keplers-third-law">4. Testing  Kepler’s Third Law</h2>
-<p>We can now verify the proportionality <span class="arithmatex">\(T^2 \propto r^3\)</span> numerically.</p>
-<p><img alt="alt text" src="image-9.png"/></p>
-<h2 id="5-extension-to-elliptical-orbits">5. Extension to Elliptical Orbits</h2>
-<p>For elliptical orbits, <strong>Kepler’s Third Law</strong> still holds, but we replace the orbital radius <span class="arithmatex">\(r\)</span> with the <strong>semi-major axis</strong> <span class="arithmatex">\(a\)</span>:</p>
+<p>Solve the quadratic equation for <span class="arithmatex">\(t\)</span>, then compute <span class="arithmatex">\(R = (v_0 \cos\theta) t\)</span>.</p>
+<p><img alt="alt text" src="image-3.png"/></p>
+<ul>
+<li>Max Range = 49.78 m at 39.0°</li>
+</ul>
+<h3 id="32-air-resistance">3.2 Air Resistance</h3>
+<p>With drag (<span class="arithmatex">\(F_d = -k v\)</span>), the equations become nonlinear:</p>
 <div class="arithmatex">\[
-T^2 = \frac{4\pi^2}{G M} a^3
+m \frac{dv_x}{dt} = -k v_x, \quad m \frac{dv_y}{dt} = -mg - k v_y
 \]</div>
-<p>This is the general form of Kepler’s Third Law for elliptical orbits, and it allows us to calculate the orbital period of objects in elliptical orbits, such as the planets in the Solar System.</p>
-<hr/>
-<h3 id="code-3-simulating-an-elliptical-orbit">Code 3: Simulating an Elliptical Orbit</h3>
-<p><img alt="alt text" src="image-10.png"/></p>
+<p>Analytical solutions are complex, so numerical methods (e.g., Euler or Runge-Kutta) are typically used.</p>
+<h3 id="33-real-world-examples">3.3 Real-World Examples</h3>
+<ul>
+<li><strong>Sports</strong>: Optimizing a basketball shot (<span class="arithmatex">\(\theta \approx 45^\circ\)</span>).</li>
+<li><strong>Engineering</strong>: Artillery trajectories with wind and drag.</li>
+<li><strong>Astrophysics</strong>: Planetary motion with adjusted <span class="arithmatex">\(g\)</span>.</li>
+</ul>
+<h2 id="4-implementation">4. Implementation</h2>
+<p>Below is a Python script to simulate and visualize the range versus angle.</p>
+<p><img alt="alt text" src="image.png"/></p>
+<ul>
+<li>v0 = 10 m/s, Max Range at 45° = 10.19 m</li>
+<li>v0 = 20 m/s, Max Range at 45° = 40.77 m</li>
+<li>v0 = 30 m/s, Max Range at 45° = 91.74 m</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
