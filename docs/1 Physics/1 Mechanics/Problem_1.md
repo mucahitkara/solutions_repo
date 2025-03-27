@@ -1,143 +1,141 @@
-# Orbital Period and Orbital Radius: Kepler's Third Law
+# Investigating the Range as a Function of the Angle of Projection
 
-## Motivation  
+## 1. Theoretical Foundation
 
-The relationship between the square of the orbital period and the cube of the orbital radius, known as **Kepler's Third Law**, is a cornerstone of celestial mechanics. This law allows for the determination of planetary motions and has broad implications for understanding gravitational interactions both on local and cosmic scales. By analyzing this relationship, we can connect fundamental principles of gravity with real-world phenomena such as satellite orbits and planetary systems.
+Projectile motion describes the trajectory of an object under the influence of gravity, assuming no other forces (e.g., air resistance) act upon it. Let’s derive the governing equations from first principles.
 
-## Task Overview  
+### 1.1 Deriving the Equations of Motion
 
-The task involves deriving the relationship between the square of the orbital period and the cube of the orbital radius for circular orbits. We will explore the implications of this law in astronomy, investigate real-world examples, and implement a computational model to simulate circular orbits and verify this relationship.
+The motion can be split into horizontal (x) and vertical (y) components. Assume the projectile is launched from the origin $(x_0, y_0) = (0, 0)$ with an initial velocity $v_0$ at an angle $\theta$ from the horizontal. The acceleration due to gravity is $g$, acting downward.
 
----
+- **Initial velocities:**
 
-## 1. Derivation of Kepler’s Third Law  
+  - Horizontal: $v_{0x} = v_0 \cos\theta$
+  - Vertical: $v_{0y} = v_0 \sin\theta$
 
-For a body in a circular orbit, the centripetal force required to keep the body moving in orbit is provided by the gravitational force. This is expressed as:
+- **Accelerations:**
 
-$$
-F_{\text{centripetal}} = F_{\text{gravitational}}
-$$
+  - Horizontal: $a_x = 0$ (no horizontal forces)
+  - Vertical: $a_y = -g$
 
-The centripetal force is given by:
+Using Newton’s equations of motion, the position as a function of time $t$ is:
 
-$$
-F_{\text{centripetal}} = \frac{m v^2}{r}
-$$
+- Horizontal: $x(t) = v_{0x} t = (v_0 \cos\theta) t$
+- Vertical: $y(t) = v_{0y} t + \frac{1}{2} a_y t^2 = (v_0 \sin\theta) t - \frac{1}{2} g t^2$
 
-where:
+### 1.2 Time of Flight
 
-- $m$ is the mass of the orbiting body,
-- $v$ is the orbital velocity,
-- $r$ is the orbital radius.
-
-The gravitational force is:
+The projectile returns to the ground when $y(t) = 0$:
 
 $$
-F_{\text{gravitational}} = \frac{G M m}{r^2}
+(v_0 \sin\theta) t - \frac{1}{2} g t^2 = 0
 $$
 
-where:
-
-- $G$ is the gravitational constant,
-- $M$ is the mass of the central body (e.g., the Sun),
-- $r$ is the orbital radius.
-
-By equating the two forces:
+Factorizing:
 
 $$
-\frac{m v^2}{r} = \frac{G M m}{r^2}
+t \left( v_0 \sin\theta - \frac{1}{2} g t \right) = 0
 $$
 
-Simplifying:
+Solutions: $t = 0$ (launch) or $t = \frac{2 v_0 \sin\theta}{g}$ (landing). Thus, the time of flight $T$ is:
 
 $$
-v^2 = \frac{G M}{r}
+T = \frac{2 v_0 \sin\theta}{g}
 $$
 
-Now, the velocity is related to the orbital period $T$ by:
+### 1.3 Range Equation
+
+The horizontal range $R$ is the distance traveled when $t = T$:
 
 $$
-v = \frac{2\pi r}{T}
+R = v_{0x} T = (v_0 \cos\theta) \cdot \frac{2 v_0 \sin\theta}{g}
 $$
 
-Substituting this into the above equation:
+Using the trigonometric identity $2 \sin\theta \cos\theta = \sin 2\theta$:
 
 $$
-\left(\frac{2\pi r}{T}\right)^2 = \frac{G M}{r}
+R = \frac{v_0^2 \sin 2\theta}{g}
 $$
 
-Simplifying further:
+This is the range as a function of the angle of projection $\theta$.
+
+### 1.4 Family of Solutions
+
+The range depends on free parameters:
+
+- $v_0$: Initial velocity
+- $g$: Gravitational acceleration
+- $\theta$: Angle of projection
+
+Varying these parameters generates a family of solutions. For instance, increasing $v_0$ scales $R$ quadratically, while $g$ inversely affects $R$.
+
+![alt text](image-1.png)
+
+## 2. Analysis of the Range
+
+### 2.1 Dependence on Angle $\theta$
+
+The term $\sin 2\theta$ dictates the angular dependence:
+
+- At $\theta = 0^\circ$ or $90^\circ$, $\sin 2\theta = 0$, so $R = 0$.
+- Maximum range occurs when $\sin 2\theta = 1$, i.e., $2\theta = 90^\circ$, or $\theta = 45^\circ$:
 
 $$
-\frac{4\pi^2 r^2}{T^2} = \frac{G M}{r}
+R_{\text{max}} = \frac{v_0^2}{g}
 $$
 
-Now, solve for $T^2$:
+- Complementary angles (e.g., $30^\circ$ and $60^\circ$) yield the same range since $\sin(180^\circ - 2\theta) = \sin 2\theta$.
 
+### 2.2 Influence of Parameters
+
+- **Initial Velocity ($v_0$)**: $R \propto v_0^2$. Doubling $v_0$ quadruples the range.
+- **Gravity ($g$)**: $R \propto \frac{1}{g}$. On the Moon ($g \approx 1.62 \, \text{m/s}^2$), the range is ~6 times larger than on Earth ($g \approx 9.81 \, \text{m/s}^2$).
+
+## 3. Practical Applications
+
+### 3.1 Uneven Terrain
+
+For a launch height $h$, the vertical displacement becomes:
 $$
-T^2 = \frac{4\pi^2 r^3}{G M}
-$$
-
-This is the relationship between the orbital period squared ($T^2$) and the orbital radius cubed ($r^3$), which is Kepler's Third Law:
-
-$$
-T^2 \propto r^3
-$$
-
----
-
-## 2. Implications of Kepler's Third Law  
-
-Kepler’s Third Law provides several important insights into the motion of celestial bodies:
-
-- **Planetary Masses**: By measuring the orbital period and radius of a satellite or planet, the mass of the central body (e.g., the Sun or Earth) can be determined.
-- **Orbital Distances**: The law helps calculate the distance of a planet or moon from the central star or planet based on its orbital period.
-- **Satellite Orbits**: Kepler’s Third Law is used extensively in satellite communication and space exploration, determining satellite orbital periods for given altitudes.
-
-### Real-World Example: The Moon’s Orbit Around Earth  
-
-The Moon orbits Earth at an average distance of $r = 3.84 \times 10^8$ meters and has an orbital period of approximately $T = 27.3$ days. Using Kepler's Third Law:
-
-$$
-T^2 = \frac{4\pi^2 r^3}{G M}
+y(t) = h + (v_0 \sin\theta) t - \frac{1}{2} g t^2
 $$
 
-Substituting the values for $r$ and $M$ (the mass of Earth):
+Set $y(t) = 0$ to find the new time of flight:
 
 $$
-T = \sqrt{\frac{4\pi^2 (3.84 \times 10^8)^3}{(6.67430 \times 10^{-11}) (5.972 \times 10^{24})}}
+\frac{1}{2} g t^2 - (v_0 \sin\theta) t - h = 0
 $$
 
-This confirms that Kepler's Third Law can be used to accurately predict the Moon's orbital period.
+Solve the quadratic equation for $t$, then compute $R = (v_0 \cos\theta) t$.
 
----
+![alt text](image-3.png)
 
-## 3. Computational Model to Simulate Circular Orbits  
+- Max Range = 49.78 m at 39.0°
 
-Below is a Python script to simulate the motion of a planet in a circular orbit using Newtonian mechanics. This simulation will help visualize the orbital motion and verify Kepler's Third Law.
+### 3.2 Air Resistance
 
-### Code 1: Simulating a Circular Orbit Using Numerical Integration  
-
-![alt text](image-8.png)
-
-## 4. Testing  Kepler’s Third Law
-
-We can now verify the proportionality $T^2 \propto r^3$ numerically.
-
-![alt text](image-9.png)
-
-## 5. Extension to Elliptical Orbits  
-
-For elliptical orbits, **Kepler’s Third Law** still holds, but we replace the orbital radius $r$ with the **semi-major axis** $a$:
+With drag ($F_d = -k v$), the equations become nonlinear:
 
 $$
-T^2 = \frac{4\pi^2}{G M} a^3
+m \frac{dv_x}{dt} = -k v_x, \quad m \frac{dv_y}{dt} = -mg - k v_y
 $$
 
-This is the general form of Kepler’s Third Law for elliptical orbits, and it allows us to calculate the orbital period of objects in elliptical orbits, such as the planets in the Solar System.
+Analytical solutions are complex, so numerical methods (e.g., Euler or Runge-Kutta) are typically used.
 
----
+### 3.3 Real-World Examples
 
-### Code 3: Simulating an Elliptical Orbit
+- **Sports**: Optimizing a basketball shot ($\theta \approx 45^\circ$).
+- **Engineering**: Artillery trajectories with wind and drag.
+- **Astrophysics**: Planetary motion with adjusted $g$.
 
-![alt text](image-10.png)
+## 4. Implementation
+
+Below is a Python script to simulate and visualize the range versus angle.
+
+
+![alt text](image.png)
+
+
+- v0 = 10 m/s, Max Range at 45° = 10.19 m
+- v0 = 20 m/s, Max Range at 45° = 40.77 m
+- v0 = 30 m/s, Max Range at 45° = 91.74 m
