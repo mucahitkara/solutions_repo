@@ -6,14 +6,14 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Investigating the Range as a Function of the Angle of Projection - Physics and Mathematics</title>
+<title>Investigating the Dynamics of a Forced Damped Pendulum - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Investigating the Range as a Function of the Angle of Projection";
-        var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_1.md";
+        var mkdocs_page_name = "Investigating the Dynamics of a Forced Damped Pendulum";
+        var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
 <!--[if lt IE 9]>
@@ -46,43 +46,43 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal current">1 Mechanics</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Investigating the Range as a Function of the Angle of Projection</a>
+<li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Investigating the Range as a Function of the Angle of Projection</a>
+</li>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Investigating the Dynamics of a Forced Damped Pendulum</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#11-deriving-the-equations-of-motion">1.1 Deriving the Equations of Motion</a>
+<li class="toctree-l4"><a class="reference internal" href="#11-governing-differential-equation">1.1 Governing Differential Equation</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#12-time-of-flight">1.2 Time of Flight</a>
+<li class="toctree-l4"><a class="reference internal" href="#12-small-angle-approximation">1.2 Small-Angle Approximation</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#13-range-equation">1.3 Range Equation</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#14-family-of-solutions">1.4 Family of Solutions</a>
+<li class="toctree-l4"><a class="reference internal" href="#13-resonance">1.3 Resonance</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-the-range">2. Analysis of the Range</a>
+<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-dynamics">2. Analysis of Dynamics</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#21-dependence-on-angle-theta">2.1 Dependence on Angle \(\theta\)</a>
+<li class="toctree-l4"><a class="reference internal" href="#21-parameter-influence">2.1 Parameter Influence</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#22-influence-of-parameters">2.2 Influence of Parameters</a>
+<li class="toctree-l4"><a class="reference internal" href="#22-transition-to-chaos">2.2 Transition to Chaos</a>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#3-practical-applications">3. Practical Applications</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#31-uneven-terrain">3.1 Uneven Terrain</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#32-air-resistance">3.2 Air Resistance</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#33-real-world-examples">3.3 Real-World Examples</a>
-</li>
-</ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#4-implementation">4. Implementation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#41-python-code-1-small-angle-resonance-simulation">4.1 Python Code 1: Small-Angle Resonance Simulation</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Investigating the Dynamics of a Forced Damped Pendulum</a>
+<li class="toctree-l3"><a class="reference internal" href="#42-python-code-2-nonlinear-simulation-with-phase-portrait">4.2 Python Code 2: Nonlinear Simulation with Phase Portrait</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#43-python-code-3-poincare-section-and-chaos">4.3 Python Code 3: Poincaré Section and Chaos</a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -197,7 +197,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Investigating the Range as a Function of the Angle of Projection</li>
+<li class="breadcrumb-item active">Investigating the Dynamics of a Forced Damped Pendulum</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -205,124 +205,80 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="investigating-the-range-as-a-function-of-the-angle-of-projection">Investigating the Range as a Function of the Angle of Projection</h1>
+<h1 id="investigating-the-dynamics-of-a-forced-damped-pendulum">Investigating the Dynamics of a Forced Damped Pendulum</h1>
+<h2 id="motivation">Motivation</h2>
+<p>The forced damped pendulum is a fascinating system that evolves from simple harmonic motion to complex dynamics due to damping and periodic external forcing. This interplay introduces phenomena like resonance, chaos, and quasiperiodic motion, offering insights into real-world systems such as mechanical oscillators, climate models, and structural engineering under periodic loads. The addition of forcing parameters—amplitude and frequency—enriches the system’s behavior, making it a powerful tool for studying both fundamental physics and practical applications.</p>
 <h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
-<p>Projectile motion describes the trajectory of an object under the influence of gravity, assuming no other forces (e.g., air resistance) act upon it. Let’s derive the governing equations from first principles.</p>
-<h3 id="11-deriving-the-equations-of-motion">1.1 Deriving the Equations of Motion</h3>
-<p>The motion can be split into horizontal (x) and vertical (y) components. Assume the projectile is launched from the origin <span class="arithmatex">\((x_0, y_0) = (0, 0)\)</span> with an initial velocity <span class="arithmatex">\(v_0\)</span> at an angle <span class="arithmatex">\(\theta\)</span> from the horizontal. The acceleration due to gravity is <span class="arithmatex">\(g\)</span>, acting downward.</p>
-<ul>
-<li>
-<p><strong>Initial velocities:</strong></p>
-</li>
-<li>
-<p>Horizontal: <span class="arithmatex">\(v_{0x} = v_0 \cos\theta\)</span></p>
-</li>
-<li>
-<p>Vertical: <span class="arithmatex">\(v_{0y} = v_0 \sin\theta\)</span></p>
-</li>
-<li>
-<p><strong>Accelerations:</strong></p>
-</li>
-<li>
-<p>Horizontal: <span class="arithmatex">\(a_x = 0\)</span> (no horizontal forces)</p>
-</li>
-<li>Vertical: <span class="arithmatex">\(a_y = -g\)</span></li>
-</ul>
-<p>Using Newton’s equations of motion, the position as a function of time <span class="arithmatex">\(t\)</span> is:</p>
-<ul>
-<li>Horizontal: <span class="arithmatex">\(x(t) = v_{0x} t = (v_0 \cos\theta) t\)</span></li>
-<li>Vertical: <span class="arithmatex">\(y(t) = v_{0y} t + \frac{1}{2} a_y t^2 = (v_0 \sin\theta) t - \frac{1}{2} g t^2\)</span></li>
-</ul>
-<h3 id="12-time-of-flight">1.2 Time of Flight</h3>
-<p>The projectile returns to the ground when <span class="arithmatex">\(y(t) = 0\)</span>:</p>
+<h3 id="11-governing-differential-equation">1.1 Governing Differential Equation</h3>
+<p>The motion of a pendulum with length <span class="arithmatex">\(l\)</span>, mass <span class="arithmatex">\(m\)</span>, under gravitational acceleration <span class="arithmatex">\(g\)</span>, damping coefficient <span class="arithmatex">\(b\)</span>, and external forcing <span class="arithmatex">\(F(t) = F_0 \cos(\omega t)\)</span> is governed by:</p>
 <div class="arithmatex">\[
-(v_0 \sin\theta) t - \frac{1}{2} g t^2 = 0
+\frac{d^2\theta}{dt^2} + \frac{b}{m} \frac{d\theta}{dt} + \frac{g}{l} \sin\theta = \frac{F_0}{ml} \cos(\omega t)
 \]</div>
-<p>Factorizing:</p>
-<div class="arithmatex">\[
-t \left( v_0 \sin\theta - \frac{1}{2} g t \right) = 0
-\]</div>
-<p>Solutions: <span class="arithmatex">\(t = 0\)</span> (launch) or <span class="arithmatex">\(t = \frac{2 v_0 \sin\theta}{g}\)</span> (landing). Thus, the time of flight <span class="arithmatex">\(T\)</span> is:</p>
-<div class="arithmatex">\[
-T = \frac{2 v_0 \sin\theta}{g}
-\]</div>
-<h3 id="13-range-equation">1.3 Range Equation</h3>
-<p>The horizontal range <span class="arithmatex">\(R\)</span> is the distance traveled when <span class="arithmatex">\(t = T\)</span>:</p>
-<div class="arithmatex">\[
-R = v_{0x} T = (v_0 \cos\theta) \cdot \frac{2 v_0 \sin\theta}{g}
-\]</div>
-<p>Using the trigonometric identity <span class="arithmatex">\(2 \sin\theta \cos\theta = \sin 2\theta\)</span>:</p>
-<div class="arithmatex">\[
-R = \frac{v_0^2 \sin 2\theta}{g}
-\]</div>
-<p>This is the range as a function of the angle of projection <span class="arithmatex">\(\theta\)</span>.</p>
-<h3 id="14-family-of-solutions">1.4 Family of Solutions</h3>
-<p>The range depends on free parameters:</p>
+<p>where <span class="arithmatex">\(\theta\)</span> is the angular displacement, <span class="arithmatex">\(\frac{b}{m}\)</span> is the damping rate, <span class="arithmatex">\(\frac{g}{l}\)</span> relates to the natural frequency, and <span class="arithmatex">\(\frac{F_0}{ml} \cos(\omega t)\)</span> is the driving term.</p>
+<p>Define:</p>
 <ul>
-<li><span class="arithmatex">\(v_0\)</span>: Initial velocity</li>
-<li><span class="arithmatex">\(g\)</span>: Gravitational acceleration</li>
-<li><span class="arithmatex">\(\theta\)</span>: Angle of projection</li>
+<li>Natural angular frequency: <span class="arithmatex">\(\omega_0 = \sqrt{\frac{g}{l}}\)</span></li>
+<li>Damping constant: <span class="arithmatex">\(\gamma = \frac{b}{m}\)</span></li>
+<li>Driving amplitude: <span class="arithmatex">\(A = \frac{F_0}{ml}\)</span></li>
 </ul>
-<p>Varying these parameters generates a family of solutions. For instance, increasing <span class="arithmatex">\(v_0\)</span> scales <span class="arithmatex">\(R\)</span> quadratically, while <span class="arithmatex">\(g\)</span> inversely affects <span class="arithmatex">\(R\)</span>.</p>
-<p><img alt="alt text" src="../image.png"/></p>
-<h2 id="2-analysis-of-the-range">2. Analysis of the Range</h2>
-<h3 id="21-dependence-on-angle-theta">2.1 Dependence on Angle <span class="arithmatex">\(\theta\)</span></h3>
-<p>The term <span class="arithmatex">\(\sin 2\theta\)</span> dictates the angular dependence:</p>
-<ul>
-<li>At <span class="arithmatex">\(\theta = 0^\circ\)</span> or <span class="arithmatex">\(90^\circ\)</span>, <span class="arithmatex">\(\sin 2\theta = 0\)</span>, so <span class="arithmatex">\(R = 0\)</span>.</li>
-<li>Maximum range occurs when <span class="arithmatex">\(\sin 2\theta = 1\)</span>, i.e., <span class="arithmatex">\(2\theta = 90^\circ\)</span>, or <span class="arithmatex">\(\theta = 45^\circ\)</span>:</li>
-</ul>
+<p>Thus, the equation becomes:</p>
 <div class="arithmatex">\[
-R_{\text{max}} = \frac{v_0^2}{g}
+\frac{d^2\theta}{dt^2} + \gamma \frac{d\theta}{dt} + \omega_0^2 \sin\theta = A \cos(\omega t)
 \]</div>
+<h3 id="12-small-angle-approximation">1.2 Small-Angle Approximation</h3>
+<p>For small <span class="arithmatex">\(\theta\)</span>, <span class="arithmatex">\(\sin\theta \approx \theta\)</span>, simplifying the equation to a linear forced damped oscillator:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + \gamma \frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
+\]</div>
+<p>This is a second-order linear differential equation. The homogeneous solution is:</p>
+<div class="arithmatex">\[
+\theta_h(t) = e^{-\frac{\gamma}{2} t} \left( C_1 \cos(\omega_d t) + C_2 \sin(\omega_d t) \right)
+\]</div>
+<p>where <span class="arithmatex">\(\omega_d = \sqrt{\omega_0^2 - \left(\frac{\gamma}{2}\right)^2}\)</span> is the damped frequency, and <span class="arithmatex">\(C_1, C_2\)</span> depend on initial conditions.</p>
+<p>The particular solution for the driving term is:</p>
+<div class="arithmatex">\[
+\theta_p(t) = B \cos(\omega t - \phi)
+\]</div>
+<p>where the amplitude <span class="arithmatex">\(B\)</span> and phase <span class="arithmatex">\(\phi\)</span> are:</p>
+<div class="arithmatex">\[
+B = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\gamma \omega)^2}}, \quad \tan\phi = \frac{\gamma \omega}{\omega_0^2 - \omega^2}
+\]</div>
+<h3 id="13-resonance">1.3 Resonance</h3>
+<p>Resonance occurs when the driving frequency <span class="arithmatex">\(\omega\)</span> approaches the natural frequency <span class="arithmatex">\(\omega_0\)</span>. For low damping (<span class="arithmatex">\(\gamma \ll \omega_0\)</span>), the amplitude peaks near <span class="arithmatex">\(\omega = \omega_0\)</span>, with maximum:</p>
+<div class="arithmatex">\[
+B_{\text{max}} \approx \frac{A}{\gamma \omega_0}
+\]</div>
+<p>This amplification highlights energy transfer efficiency.</p>
+<h2 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h2>
+<h3 id="21-parameter-influence">2.1 Parameter Influence</h3>
 <ul>
-<li>Complementary angles (e.g., <span class="arithmatex">\(30^\circ\)</span> and <span class="arithmatex">\(60^\circ\)</span>) yield the same range since <span class="arithmatex">\(\sin(180^\circ - 2\theta) = \sin 2\theta\)</span>.</li>
+<li><strong>Damping (<span class="arithmatex">\(\gamma\)</span>)</strong>: Low <span class="arithmatex">\(\gamma\)</span> sustains oscillations; high <span class="arithmatex">\(\gamma\)</span> causes rapid decay.</li>
+<li><strong>Driving Amplitude (<span class="arithmatex">\(A\)</span>)</strong>: Higher <span class="arithmatex">\(A\)</span> can push the system into nonlinear regimes or chaos.</li>
+<li><strong>Driving Frequency (<span class="arithmatex">\(\omega\)</span>)</strong>: Near <span class="arithmatex">\(\omega_0\)</span>, resonance amplifies motion; far from <span class="arithmatex">\(\omega_0\)</span>, motion may become quasiperiodic or chaotic.</li>
 </ul>
-<h3 id="22-influence-of-parameters">2.2 Influence of Parameters</h3>
-<ul>
-<li><strong>Initial Velocity (<span class="arithmatex">\(v_0\)</span>)</strong>: <span class="arithmatex">\(R \propto v_0^2\)</span>. Doubling <span class="arithmatex">\(v_0\)</span> quadruples the range.</li>
-<li><strong>Gravity (<span class="arithmatex">\(g\)</span>)</strong>: <span class="arithmatex">\(R \propto \frac{1}{g}\)</span>. On the Moon (<span class="arithmatex">\(g \approx 1.62 \, \text{m/s}^2\)</span>), the range is ~6 times larger than on Earth (<span class="arithmatex">\(g \approx 9.81 \, \text{m/s}^2\)</span>).</li>
-</ul>
+<h3 id="22-transition-to-chaos">2.2 Transition to Chaos</h3>
+<p>For large <span class="arithmatex">\(A\)</span> or specific <span class="arithmatex">\(\omega\)</span>, the nonlinear term <span class="arithmatex">\(\sin\theta\)</span> dominates, leading to chaotic behavior. This is characterized by sensitivity to initial conditions and aperiodic motion, observable in phase portraits and Poincaré sections.</p>
 <h2 id="3-practical-applications">3. Practical Applications</h2>
-<h3 id="31-uneven-terrain">3.1 Uneven Terrain</h3>
-<p>For a launch height <span class="arithmatex">\(h\)</span>, the vertical displacement becomes:
-$$
-y(t) = h + (v_0 \sin\theta) t - \frac{1}{2} g t^2
-$$</p>
-<p>Set <span class="arithmatex">\(y(t) = 0\)</span> to find the new time of flight:</p>
-<div class="arithmatex">\[
-\frac{1}{2} g t^2 - (v_0 \sin\theta) t - h = 0
-\]</div>
-<p>Solve the quadratic equation for <span class="arithmatex">\(t\)</span>, then compute <span class="arithmatex">\(R = (v_0 \cos\theta) t\)</span>.</p>
-<p><img alt="alt text" src="../image-1.png"/></p>
 <ul>
-<li>Max Range = 49.78 m at 39.0°</li>
-</ul>
-<h3 id="32-air-resistance">3.2 Air Resistance</h3>
-<p>With drag (<span class="arithmatex">\(F_d = -k v\)</span>), the equations become nonlinear:</p>
-<div class="arithmatex">\[
-m \frac{dv_x}{dt} = -k v_x, \quad m \frac{dv_y}{dt} = -mg - k v_y
-\]</div>
-<p>Analytical solutions are complex, so numerical methods (e.g., Euler or Runge-Kutta) are typically used.</p>
-<h3 id="33-real-world-examples">3.3 Real-World Examples</h3>
-<ul>
-<li><strong>Sports</strong>: Optimizing a basketball shot (<span class="arithmatex">\(\theta \approx 45^\circ\)</span>).</li>
-<li><strong>Engineering</strong>: Artillery trajectories with wind and drag.</li>
-<li><strong>Astrophysics</strong>: Planetary motion with adjusted <span class="arithmatex">\(g\)</span>.</li>
+<li><strong>Energy Harvesting</strong>: Pendulum-based devices convert ambient vibrations into electrical energy.</li>
+<li><strong>Suspension Bridges</strong>: Model swaying under wind (e.g., Tacoma Narrows).</li>
+<li><strong>Oscillating Circuits</strong>: Analogous to driven RLC circuits in electronics.</li>
 </ul>
 <h2 id="4-implementation">4. Implementation</h2>
-<p>Below is a Python script to simulate and visualize the range versus angle.</p>
-<p><img alt="alt text" src="../image-2.png"/></p>
-<ul>
-<li>v0 = 10 m/s, Max Range at 45° = 10.19 m</li>
-<li>v0 = 20 m/s, Max Range at 45° = 40.77 m</li>
-<li>v0 = 30 m/s, Max Range at 45° = 91.74 m</li>
-</ul>
+<h3 id="41-python-code-1-small-angle-resonance-simulation">4.1 Python Code 1: Small-Angle Resonance Simulation</h3>
+<p>Simulates the linear approximation and plots amplitude vs. time.</p>
+<p><img alt="alt text" src="../image-3.png"/></p>
+<h2 id="42-python-code-2-nonlinear-simulation-with-phase-portrait">4.2 Python Code 2: Nonlinear Simulation with Phase Portrait</h2>
+<p>Solves the full nonlinear equation and plots the phase portrait.</p>
+<p><img alt="alt text" src="../image-4.png"/></p>
+<h2 id="43-python-code-3-poincare-section-and-chaos">4.3 Python Code 3: Poincaré Section and Chaos</h2>
+<p>Visualizes the Poincaré section to detect chaotic behavior.</p>
+<p><img alt="alt text" src="../image-5.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../../.." title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../Problem_2/" title="Investigating the Dynamics of a Forced Damped Pendulum">Next <span class="icon icon-circle-arrow-right"></span></a>
+<a class="btn btn-neutral float-left" href="../Problem_1/" title="Investigating the Range as a Function of the Angle of Projection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../../2%20Gravity/%23%20Escape%20Velocities%20and%20Cosmic%20Velocitie/" title="# Escape Velocities and Cosmic Velocitie">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
 <div role="contentinfo">
@@ -337,8 +293,8 @@ m \frac{dv_x}{dt} = -k v_x, \quad m \frac{dv_y}{dt} = -mg - k v_y
 </div>
 <div aria-label="Versions" class="rst-versions" role="note">
 <span class="rst-current-version" data-toggle="rst-current-version">
-<span><a href="../../.." style="color: #fcfcfc">« Previous</a></span>
-<span><a href="../Problem_2/" style="color: #fcfcfc">Next »</a></span>
+<span><a href="../Problem_1/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../../2%20Gravity/%23%20Escape%20Velocities%20and%20Cosmic%20Velocitie/" style="color: #fcfcfc">Next »</a></span>
 </span>
 </div>
 <script src="../../../js/jquery-3.6.0.min.js"></script>
