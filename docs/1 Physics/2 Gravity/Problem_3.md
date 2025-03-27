@@ -1,90 +1,93 @@
-# Problem 3
 # Trajectories of a Freely Released Payload Near Earth
 
-## Introduction
-When an object is released from a moving rocket near Earth, its trajectory depends on initial conditions and gravitational forces. This scenario presents a rich problem, blending principles of orbital mechanics and numerical methods. Understanding the potential trajectories is vital for space missions, such as deploying payloads or returning objects to Earth.
+## Motivation
 
-## Orbital Mechanics and Possible Trajectories
-An object released near Earth can follow different types of trajectories based on its velocity and altitude:
-- **Elliptical Orbit:** If the velocity is below escape velocity but high enough, the object remains in orbit.
-- **Parabolic Trajectory:** If the velocity is exactly the escape velocity, the object follows a parabolic path and escapes Earth's gravity.
-- **Hyperbolic Trajectory:** If the velocity exceeds escape velocity, the object follows a hyperbolic trajectory and moves away from Earth indefinitely.
-- **Suborbital (Ballistic) Trajectory:** If the velocity is low, the object will re-enter Earth's atmosphere and eventually impact the surface.
+When a payload is released from a moving rocket near Earth, its subsequent trajectory is determined by its initial position, velocity, and Earth’s gravitational field. This scenario integrates orbital mechanics and numerical simulation, offering insights into payload deployment, orbital insertion, and reentry dynamics. Understanding these trajectories is critical for space mission planning, such as satellite launches or spacecraft reentry.
 
-## Mathematical Model
-Newton’s Law of Gravitation governs the motion of the payload:
-\[
-F = \frac{G M m}{r^2}
-\]
-where:
-- \( G \) is the gravitational constant (6.67430 × 10⁻¹¹ m³/kg/s²)
-- \( M \) is the mass of Earth (5.972 × 10²⁴ kg)
-- \( m \) is the mass of the payload
-- \( r \) is the distance from the center of the Earth
+---
 
-Using Newton’s second law, we derive the equations of motion for numerical simulation.
+## Possible Trajectories
 
-## Python Simulation
-The following Python script numerically simulates the trajectory of a payload released near Earth, considering different initial velocities.
+The trajectory of a freely released payload depends on its specific energy and angular momentum relative to Earth. Using gravitational principles, the possible paths are:
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
+1. **Elliptical Trajectory**: If the payload’s total mechanical energy $E < 0$, it follows a bound, elliptical orbit around Earth.
+2. **Parabolic Trajectory**: If $E = 0$, the payload escapes Earth with zero velocity at infinity, tracing a parabola.
+3. **Hyperbolic Trajectory**: If $E > 0$, the payload escapes with excess velocity, following a hyperbola.
 
-# Constants
-G = 6.67430e-11  # Gravitational constant (m^3/kg/s^2)
-M_earth = 5.972e24  # Mass of Earth (kg)
-R_earth = 6.371e6  # Radius of Earth (m)
+The specific energy per unit mass is:
 
-# Equations of Motion
-def equations(t, y):
-    x, vx, y, vy = y
-    r = np.sqrt(x**2 + y**2)
-    ax = -G * M_earth * x / r**3
-    ay = -G * M_earth * y / r**3
-    return [vx, ax, vy, ay]
+$$
+\epsilon = \frac{v^2}{2} - \frac{G M}{r}
+$$
 
-# Initial Conditions
-altitude = 400000  # 400 km above Earth's surface
-initial_speed = 7500  # m/s (adjust to simulate different trajectories)
-angle = np.radians(45)  # Launch angle
-x0, y0 = R_earth + altitude, 0
-vx0, vy0 = initial_speed * np.cos(angle), initial_speed * np.sin(angle)
+where $v$ is the initial velocity, $r$ is the radial distance from Earth’s center, $G$ is the gravitational constant, and $M$ is Earth’s mass. The trajectory type is determined by:
 
-# Time Span
-t_span = (0, 10000)
-t_eval = np.linspace(0, 10000, 1000)
+- $\epsilon < 0$: Elliptical
+- $\epsilon = 0$: Parabolic
+- $\epsilon > 0$: Hyperbolic
 
-# Solve Differential Equations
-sol = solve_ivp(equations, t_span, [x0, vx0, y0, vy0], t_eval=t_eval, method='RK45')
+---
 
-# Extract Results
-x_trajectory = sol.y[0]
-y_trajectory = sol.y[2]
+## Mathematical Derivation
 
-# Plot Trajectory
-fig, ax = plt.subplots(figsize=(6, 6))
-ax.plot(x_trajectory, y_trajectory, label='Payload Trajectory')
+### Equations of Motion
 
-# Draw Earth
-earth = plt.Circle((0, 0), R_earth, color='blue', fill=True, alpha=0.3, label='Earth')
-ax.add_patch(earth)
+Newton’s Law of Gravitation provides the force: $F = G M m / r^2$. For a payload of mass $m$, the acceleration in polar coordinates (radial $r$, angular $\theta$) is:
 
-ax.set_xlim(-2*R_earth, 2*R_earth)
-ax.set_ylim(-2*R_earth, 2*R_earth)
-ax.set_xlabel("x position (m)")
-ax.set_ylabel("y position (m)")
-ax.set_title("Payload Trajectory near Earth")
-ax.legend()
-ax.set_aspect('equal')
-plt.show()
-```
+$$
+\ddot{r} - r \dot{\theta}^2 = -\frac{G M}{r^2}
+$$
 
-## Results and Analysis
-- If the initial velocity is below orbital speed, the payload follows a ballistic trajectory and falls back to Earth.
-- If the initial velocity reaches orbital speed, the payload will follow an elliptical orbit.
-- If the velocity is at escape speed, the payload follows a parabolic trajectory.
-- If the velocity exceeds escape velocity, the payload follows a hyperbolic trajectory and leaves Earth's gravitational influence.
+$$
+r \ddot{\theta} + 2 \dot{r} \dot{\theta} = 0
+$$
 
-These findings are critical for space mission planning, satellite deployment, and planetary exploration.
+The second equation implies conservation of angular momentum: $h = r^2 \dot{\theta} = \text{constant}$.
+
+### Trajectory Classification
+
+The orbit’s shape is governed by the eccentricity $e$, derived from initial conditions:
+
+$$
+e = \sqrt{1 + \frac{2 \epsilon h^2}{(G M)^2}}
+$$
+
+- $e < 1$: Elliptical
+- $e = 1$: Parabolic
+- $e > 1$: Hyperbolic
+
+For a circular orbit, $v = \sqrt{G M / r}$, and for escape, $v = \sqrt{2 G M / r}$.
+
+---
+
+## Numerical Analysis
+
+To compute the trajectory, we solve the differential equations numerically using initial conditions: position $(r_0, \theta_0)$ and velocity $(v_{r0}, v_{\theta0})$. The state vector is $[r, \dot{r}, \theta, \dot{\theta}]$, and we use a numerical integrator (e.g., Runge-Kutta) to simulate the path under Earth’s gravity.
+
+### Initial Conditions Example
+
+- Altitude: 400 km ($r_0 = 6.371 \times 10^6 + 4 \times 10^5 = 6.771 \times 10^6$ m)
+- Earth’s mass: $M = 5.972 \times 10^{24}$ kg
+- $G = 6.6743 \times 10^{-11}$ m³ kg⁻¹ s⁻²
+- Circular velocity: $v_{\theta0} = \sqrt{G M / r_0} \approx 7.67$ km/s
+- Test cases: $v = 0.8 v_c$, $v_c$, $1.5 v_c$ (suborbital, orbital, escape)
+
+---
+
+## Relation to Space Scenarios
+
+1. **Orbital Insertion**: If $v \approx v_c$, the payload enters an elliptical or circular orbit, useful for satellite deployment.
+2. **Reentry**: If $v < v_c$, the trajectory intersects Earth’s surface or atmosphere, simulating a return path.
+3. **Escape**: If $v > \sqrt{2 G M / r}$, the payload escapes Earth’s gravity, relevant for interplanetary missions.
+
+---
+
+## Python Scripts and Visualizations
+
+### Python Script 1: Trajectory Simulation
+
+![alt text](image-5.png)
+
+## Python Script 2: Energy-Based Trajectory Types
+
+![alt text](image-6.png)
