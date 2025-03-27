@@ -64,7 +64,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#deliverables">📦 Deliverables</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#result-preview">🔍 Result Preview</a>
+<li class="toctree-l3"><a class="reference internal" href="#result-preview">📊 Result Preview</a>
 </li>
 </ul>
 </li>
@@ -191,43 +191,48 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1-investigating-the-range-as-a-function-of-the-angle-of-projection">Problem 1 - Investigating the Range as a Function of the Angle of Projection</h1>
 <h2 id="motivation">🎯 Motivation</h2>
-<p>Projectile motion offers a rich environment to explore kinematic equations and observe how multiple parameters interact. In this task, we aim to understand how the range of a projectile depends on its launch angle.</p>
+<p>Projectile motion offers a rich environment to explore kinematic equations and observe how multiple parameters interact. In this task, we aim to understand how the range of a projectile depends on its angle of projection. </p>
 <p>By visualizing the output of equations under varying launch angles, students gain insight into physical principles in a hands-on, intuitive way.</p>
 <hr/>
 <h2 id="task">📌 Task</h2>
-<h3 id="1-theoretical-foundation">1. <strong>Theoretical Foundation</strong>:</h3>
+<h3 id="1-theoretical-foundation">1. Theoretical Foundation:</h3>
 <ul>
 <li>Derive the equation for projectile range:<br/>
-  $$ R = \frac{v_0^2 \sin(2\theta)}{g} $$<br/>
-  where <span class="arithmatex">\( v_0 \)</span> is initial velocity, <span class="arithmatex">\( \theta \)</span> is angle, and <span class="arithmatex">\( g \)</span> is gravitational acceleration.</li>
+  [
+  R = \frac{v_0^2 \sin(2\theta)}{g}
+  ]
+  where <span class="arithmatex">\(v_0\)</span> is initial velocity, <span class="arithmatex">\(\theta\)</span> is angle, and <span class="arithmatex">\(g\)</span> is gravitational acceleration.</li>
 </ul>
-<h3 id="2-simulation">2. <strong>Simulation</strong>:</h3>
+<h3 id="2-simulation">2. Simulation:</h3>
 <ul>
-<li>Use Python to simulate projectile motion for various angles <span class="arithmatex">\( \theta \in [0^\circ, 90^\circ] \)</span></li>
+<li>Use Python to simulate projectile motion for various angles <span class="arithmatex">\(\theta \in [0^\circ, 90^\circ]\)</span></li>
 <li>Compute and plot the range vs angle curve</li>
 </ul>
-<h3 id="3-analysis">3. <strong>Analysis</strong>:</h3>
+<h3 id="3-analysis">3. Analysis:</h3>
 <ul>
-<li>Identify the angle at which maximum range is achieved  </li>
+<li>Identify the angle at which maximum range is achieved</li>
 <li>Discuss the symmetry of the sine function and physical meaning</li>
 </ul>
-<h3 id="4-visualization">4. <strong>Visualization</strong>:</h3>
+<h3 id="4-visualization">4. Visualization:</h3>
 <ul>
 <li>Plot: Angle (degrees) vs. Range (meters)</li>
 </ul>
 <hr/>
 <h2 id="deliverables">📦 Deliverables</h2>
 <ul>
-<li><code>projectile_simulation.py</code>: Python script for simulation and plotting  </li>
-<li>Graphical output showing range as a function of angle  </li>
-<li>This <code>.md</code> file explaining method and interpretation of results  </li>
+<li><code>projectile_simulation.py</code>: Python script for simulation and plotting</li>
+<li>Graphical output showing range as a function of angle</li>
+<li>This <code>.md</code> file explaining method and interpretation of results</li>
 </ul>
 <hr/>
-<h2 id="result-preview">🔍 Result Preview</h2>
+<h2 id="result-preview">📊 Result Preview</h2>
 <ul>
-<li>Maximum range occurs at <span class="arithmatex">\( \theta = 45^\circ \)</span> </li>
-<li>Symmetrical range for <span class="arithmatex">\( \theta \)</span> and <span class="arithmatex">\( 90^\circ - \theta \)</span></li>
+<li>Maximum range occurs at <span class="arithmatex">\( \theta = 45^\circ \)</span></li>
+<li>Symmetrical range for <span class="arithmatex">\( \theta \)</span> and <span class="arithmatex">\(90^\circ - \theta \)</span></li>
 </ul>
+<p><img alt="Range vs Launch Angle" src="../projectile_range_plot.png"/></p>
+<p>The plot shows how the projectile's horizontal range varies with the launch angle. 
+The maximum range is observed at 45°, consistent with the analytical model.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
