@@ -175,8 +175,8 @@ This script simulates the particle's motion using the Euler method across three 
 
 ### Case 1: Uniform Magnetic Field
 
-- Cyclotron Frequency: $ \omega = 9.58e+07 $ rad/s
-- Larmor Radius: $ r = 1.04e-03 $ m
+- Cyclotron Frequency: $\omega = 9.58e+07$ rad/s
+- Larmor Radius: $r = 1.04e-03$ m
 
 ![alt text](image.png)
 
@@ -185,7 +185,7 @@ This script simulates the particle's motion using the Euler method across three 
 
 ### Case 2: Combined Electric and Magnetic Fields
 
-- Drift Velocity: $ \mathbf{v}_d = (0.00e+00, -1.00e+05, 0.00e+00) $ m/s
+- Drift Velocity: $\mathbf{v}_d = (0.00e+00, -1.00e+05, 0.00e+00)$ m/s
 
 ![alt text](image-2.png)
 
@@ -194,8 +194,8 @@ This script simulates the particle's motion using the Euler method across three 
 
 ### Case 3: Parameter Exploration (Varying B)
 
-- Cyclotron Frequency: $ \omega = 1.92e+08 $ rad/s
-- Larmor Radius: $ r = 5.22e-04 $ m
+- Cyclotron Frequency: $\omega = 1.92e+08$ rad/s
+- Larmor Radius: $r = 5.22e-04$ m
 
 ![alt text](image-4.png)
 
