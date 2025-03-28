@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Simulating the Effects of the Lorentz Force - Physics and Mathematics</title>
+<title>Simulating the Effects of the Lorentz Force - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1 - Simulating the Effects of the Lorentz Force";
+        var mkdocs_page_name = "Simulating the Effects of the Lorentz Force";
         var mkdocs_page_input_path = "1 Physics/4 Electromagnetism/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,25 +70,57 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">4 Electromagnetism</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1 - Simulating the Effects of the Lorentz Force</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Simulating the Effects of the Lorentz Force</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#motivation">🔷 Motivation:</a>
+<li class="toctree-l3"><a class="reference internal" href="#1-introduction-and-motivation">1. Introduction and Motivation</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#task">🔷 Task:</a>
+<li class="toctree-l3"><a class="reference internal" href="#2-exploration-of-applications">2. Exploration of Applications</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#1-exploration-of-applications">1. Exploration of Applications:</a>
+<li class="toctree-l4"><a class="reference internal" href="#21-systems-involving-the-lorentz-force">2.1 Systems Involving the Lorentz Force</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#2-simulating-particle-motion">2. Simulating Particle Motion:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#3-parameter-exploration">3. Parameter Exploration:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#4-visualization">4. Visualization:</a>
+<li class="toctree-l4"><a class="reference internal" href="#22-role-of-electric-and-magnetic-fields">2.2 Role of Electric and Magnetic Fields</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#deliverables">🔷 Deliverables:</a>
+<li class="toctree-l3"><a class="reference internal" href="#3-simulating-particle-motion">3. Simulating Particle Motion</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#31-equations-of-motion">3.1 Equations of Motion</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#hints-and-resources">🔷 Hints and Resources:</a>
+<li class="toctree-l4"><a class="reference internal" href="#32-numerical-method-euler-method">3.2 Numerical Method: Euler Method</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#33-field-configurations">3.3 Field Configurations</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-parameter-exploration">4. Parameter Exploration</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-visualization">5. Visualization</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#6-python-implementation">6. Python Implementation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#case-1-uniform-magnetic-field">Case 1: Uniform Magnetic Field</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#case-2-combined-electric-and-magnetic-fields">Case 2: Combined Electric and Magnetic Fields</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#case-3-parameter-exploration-varying-b">Case 3: Parameter Exploration (Varying B)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#explanation-of-the-code">Explanation of the Code</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#7-analysis-applications-in-real-world-systems">7. Analysis: Applications in Real-World Systems</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#71-cyclotrons-and-particle-acceleration">7.1 Cyclotrons and Particle Acceleration</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#72-magnetic-confinement-in-plasmas">7.2 Magnetic Confinement in Plasmas</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#73-crossed-fields-in-magnetrons">7.3 Crossed Fields in Magnetrons</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#8-future-enhancements-and-extensions">8. Future Enhancements and Extensions</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#9-conclusion">9. Conclusion</a>
 </li>
 </ul>
 </li>
@@ -181,7 +213,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">4 Electromagnetism</li>
-<li class="breadcrumb-item active">Problem 1 - Simulating the Effects of the Lorentz Force</li>
+<li class="breadcrumb-item active">Simulating the Effects of the Lorentz Force</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -189,82 +221,442 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1-simulating-the-effects-of-the-lorentz-force">Problem 1 - Simulating the Effects of the Lorentz Force</h1>
-<h2 id="motivation">🔷 Motivation:</h2>
-<p>The Lorentz force, expressed as:</p>
+<h1 id="simulating-the-effects-of-the-lorentz-force">Simulating the Effects of the Lorentz Force</h1>
+<h2 id="1-introduction-and-motivation">1. Introduction and Motivation</h2>
+<p>The Lorentz force governs the motion of a charged particle in the presence of electric and magnetic fields. It is a fundamental concept in electromagnetism, expressed as:</p>
 <div class="arithmatex">\[
 \mathbf{F} = q\mathbf{E} + q\mathbf{v} \times \mathbf{B}
 \]</div>
-<p>governs the motion of charged particles in electric and magnetic fields.<br/>
-It is foundational in fields like plasma physics, particle accelerators, and astrophysics.<br/>
-By focusing on simulations, we can explore practical applications and visualize the complex trajectories that arise due to this force.</p>
-<hr/>
-<h2 id="task">🔷 Task:</h2>
-<h3 id="1-exploration-of-applications">1. Exploration of Applications:</h3>
+<p>where:</p>
 <ul>
-<li>
-<p>Identify systems where the Lorentz force plays a key role<br/>
-<em>(e.g., particle accelerators, mass spectrometers, plasma confinement)</em></p>
-</li>
-<li>
-<p>Discuss the relevance of electric (<span class="arithmatex">\(\mathbf{E}\)</span>) and magnetic (<span class="arithmatex">\(\mathbf{B}\)</span>) fields<br/>
-  in controlling the motion of charged particles.</p>
-</li>
+<li>$ \mathbf{F} $ is the force on the particle (in Newtons, $ \text{N} $),</li>
+<li>$ q $ is the charge of the particle (in Coulombs, $ \text{C} $),</li>
+<li>$ \mathbf{E} $ is the electric field (in Volts per meter, $ \text{V/m} $),</li>
+<li>$ \mathbf{v} $ is the velocity of the particle (in meters per second, $ \text{m/s} $),</li>
+<li>$ \mathbf{B} $ is the magnetic field (in Tesla, $ \text{T} $),</li>
+<li>$ \times $ denotes the cross product.</li>
 </ul>
+<p>The electric field component of the force is:</p>
+<div class="arithmatex">\[
+\mathbf{F}_E = q\mathbf{E}
+\]</div>
+<p>while the magnetic field component is:</p>
+<div class="arithmatex">\[
+\mathbf{F}_B = q\mathbf{v} \times \mathbf{B}
+\]</div>
+<p>The magnitude of the magnetic force can be written as:</p>
+<div class="arithmatex">\[
+|\mathbf{F}_B| = |q| v B \sin\theta
+\]</div>
+<p>where $ \theta $ is the angle between $ \mathbf{v} $ and $ \mathbf{B} $.</p>
+<p>This project aims to simulate the motion of a charged particle under the Lorentz force, explore its applications in systems like particle accelerators and plasma confinement, and visualize the trajectories in 2D and 3D. We will examine various field configurations, including uniform magnetic fields, combined electric and magnetic fields, and crossed fields, to study phenomena such as circular motion, helical motion, and drift velocity.</p>
 <hr/>
-<h3 id="2-simulating-particle-motion">2. Simulating Particle Motion:</h3>
+<h2 id="2-exploration-of-applications">2. Exploration of Applications</h2>
+<h3 id="21-systems-involving-the-lorentz-force">2.1 Systems Involving the Lorentz Force</h3>
+<p>The Lorentz force is critical in several physical systems:</p>
 <ul>
-<li>Implement a simulation to compute and visualize the trajectory of a charged particle under:</li>
-<li>A uniform magnetic field  </li>
-<li>Combined uniform electric and magnetic fields  </li>
-<li>
-<p>Crossed electric and magnetic fields</p>
-</li>
-<li>
-<p>Simulate the particle’s circular, helical, or drift motion<br/>
-  based on initial conditions and field configurations.</p>
-</li>
+<li><strong>Particle Accelerators</strong>: In cyclotrons, the magnetic field causes charged particles to follow circular paths. The centripetal force required for circular motion is provided by the magnetic component of the Lorentz force:</li>
 </ul>
-<hr/>
-<h3 id="3-parameter-exploration">3. Parameter Exploration:</h3>
+<div class="arithmatex">\[
+\frac{m v^2}{r} = |q| v B
+\]</div>
+<p>Solving for the radius $ r $, we get the Larmor radius:</p>
+<div class="arithmatex">\[
+r = \frac{m v}{|q| B}
+\]</div>
+<p>The cyclotron frequency, or the angular frequency of the circular motion, is:</p>
+<div class="arithmatex">\[
+\omega = \frac{v}{r} = \frac{|q| B}{m}
+\]</div>
+<p>The period of the motion is:</p>
+<div class="arithmatex">\[
+T = \frac{2\pi}{\omega} = \frac{2\pi m}{|q| B}
+\]</div>
 <ul>
-<li>Allow variations in:</li>
-<li>Field strengths (<span class="arithmatex">\(\mathbf{E}, \mathbf{B}\)</span>)  </li>
-<li>Initial particle velocity (<span class="arithmatex">\(\mathbf{v}\)</span>)  </li>
-<li>
-<p>Charge and mass of the particle (<span class="arithmatex">\(q, m\)</span>)</p>
-</li>
-<li>
-<p>Observe how these parameters influence the trajectory.</p>
-</li>
+<li><strong>Mass Spectrometers</strong>: The Lorentz force separates ions based on their mass-to-charge ratio. The radius of the path in a magnetic field is:</li>
 </ul>
-<hr/>
-<h3 id="4-visualization">4. Visualization:</h3>
+<div class="arithmatex">\[
+r = \frac{\sqrt{2 m E_k}}{|q| B}
+\]</div>
+<p>where $ E_k = \frac{1}{2} m v^2 $ is the kinetic energy of the particle.</p>
 <ul>
-<li>
-<p>Create clear, labeled plots showing the particle’s path in <strong>2D</strong> and <strong>3D</strong><br/>
-  for different field configurations.</p>
-</li>
-<li>
-<p>Highlight physical phenomena such as <strong>Larmor radius</strong> and <strong>drift velocity</strong>.</p>
-</li>
+<li><strong>Plasma Confinement</strong>: In fusion devices like tokamaks, magnetic fields confine charged particles in helical trajectories. The gyroradius (another term for Larmor radius) determines the confinement scale:</li>
 </ul>
+<div class="arithmatex">\[
+r_g = \frac{m v_\perp}{|q| B}
+\]</div>
+<p>where $ v_\perp $ is the velocity component perpendicular to $ \mathbf{B} $.</p>
+<ul>
+<li><strong>Astrophysics</strong>: Charged particles in the Earth's magnetic field follow helical paths, leading to phenomena like auroras. The pitch angle of the helix is:</li>
+</ul>
+<div class="arithmatex">\[
+\alpha = \tan^{-1}\left(\frac{v_\parallel}{v_\perp}\right)
+\]</div>
+<p>where $ v_\parallel $ and $ v_\perp $ are the velocity components parallel and perpendicular to $ \mathbf{B} $, respectively.</p>
+<h3 id="22-role-of-electric-and-magnetic-fields">2.2 Role of Electric and Magnetic Fields</h3>
+<ul>
+<li><strong>Electric Field ($ \mathbf{E} $)</strong>: The force due to the electric field is:</li>
+</ul>
+<div class="arithmatex">\[
+\mathbf{F}_E = q\mathbf{E}
+\]</div>
+<p>The acceleration caused by the electric field is:</p>
+<div class="arithmatex">\[
+\mathbf{a}_E = \frac{\mathbf{F}_E}{m} = \frac{q}{m} \mathbf{E}
+\]</div>
+<p>This acceleration is independent of the particle's velocity and causes linear motion along the direction of $ \mathbf{E} $ (if $ q &gt; 0 $) or opposite to it (if $ q &lt; 0 $).</p>
+<ul>
+<li><strong>Magnetic Field ($ \mathbf{B} $)</strong>: The magnetic force is:</li>
+</ul>
+<div class="arithmatex">\[
+\mathbf{F}_B = q\mathbf{v} \times \mathbf{B}
+\]</div>
+<p>The acceleration due to the magnetic field is:</p>
+<div class="arithmatex">\[
+\mathbf{a}_B = \frac{\mathbf{F}_B}{m} = \frac{q}{m} (\mathbf{v} \times \mathbf{B})
+\]</div>
+<p>Since $ \mathbf{v} \times \mathbf{B} $ is perpendicular to $ \mathbf{v} $, the magnetic force does no work (as $ \mathbf{F}_B \cdot \mathbf{v} = 0 $) and only changes the direction of the velocity, leading to circular or helical motion.</p>
+<p>In crossed fields ($ \mathbf{E} \perp \mathbf{B} $), the particle experiences a drift velocity:</p>
+<div class="arithmatex">\[
+\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
+\]</div>
+<p>The magnitude of the drift velocity is:</p>
+<div class="arithmatex">\[
+v_d = \frac{E}{B}
+\]</div>
+<p>This drift is perpendicular to both $ \mathbf{E} $ and $ \mathbf{B} $ and is crucial in applications like magnetrons and plasma physics.</p>
 <hr/>
-<h2 id="deliverables">🔷 Deliverables:</h2>
+<h2 id="3-simulating-particle-motion">3. Simulating Particle Motion</h2>
+<h3 id="31-equations-of-motion">3.1 Equations of Motion</h3>
+<p>Using Newton's second law, $ \mathbf{F} = m\mathbf{a} $, where $ \mathbf{a} = \frac{d\mathbf{v}}{dt} $, we write:</p>
+<div class="arithmatex">\[
+m \frac{d\mathbf{v}}{dt} = q\mathbf{E} + q\mathbf{v} \times \mathbf{B}
+\]</div>
+<p>Dividing by the mass $ m $:</p>
+<div class="arithmatex">\[
+\frac{d\mathbf{v}}{dt} = \frac{q}{m} \mathbf{E} + \frac{q}{m} (\mathbf{v} \times \mathbf{B})
+\]</div>
+<p>The position $ \mathbf{r} = (x, y, z) $ is updated using:</p>
+<div class="arithmatex">\[
+\frac{d\mathbf{r}}{dt} = \mathbf{v}
+\]</div>
+<p>In component form, for $ \mathbf{E} = (E_x, E_y, E_z) $ and $ \mathbf{B} = (B_x, B_y, B_z) $, the cross product $ \mathbf{v} \times \mathbf{B} $ is:</p>
+<div class="arithmatex">\[
+\mathbf{v} \times \mathbf{B} = \begin{vmatrix}
+\hat{i} &amp; \hat{j} &amp; \hat{k} \\
+v_x &amp; v_y &amp; v_z \\
+B_x &amp; B_y &amp; B_z
+\end{vmatrix} = (v_y B_z - v_z B_y) \hat{i} - (v_x B_z - v_z B_x) \hat{j} + (v_x B_y - v_y B_x) \hat{k}
+\]</div>
+<p>Thus, the equations of motion in component form are:</p>
+<div class="arithmatex">\[
+\frac{dv_x}{dt} = \frac{q}{m} E_x + \frac{q}{m} (v_y B_z - v_z B_y)
+\]</div>
+<div class="arithmatex">\[
+\frac{dv_y}{dt} = \frac{q}{m} E_y - \frac{q}{m} (v_x B_z - v_z B_x)
+\]</div>
+<div class="arithmatex">\[
+\frac{dv_z}{dt} = \frac{q}{m} E_z + \frac{q}{m} (v_x B_y - v_y B_x)
+\]</div>
+<p>And for the position:</p>
+<div class="arithmatex">\[
+\frac{dx}{dt} = v_x, \quad \frac{dy}{dt} = v_y, \quad \frac{dz}{dt} = v_z
+\]</div>
+<h3 id="32-numerical-method-euler-method">3.2 Numerical Method: Euler Method</h3>
+<p>We use the Euler method to solve these differential equations numerically. For a small time step $ \Delta t $, the updates are:</p>
+<div class="arithmatex">\[
+\mathbf{v}(t + \Delta t) = \mathbf{v}(t) + \left( \frac{q}{m} \mathbf{E} + \frac{q}{m} (\mathbf{v} \times \mathbf{B}) \right) \Delta t
+\]</div>
+<div class="arithmatex">\[
+\mathbf{r}(t + \Delta t) = \mathbf{r}(t) + \mathbf{v}(t) \Delta t
+\]</div>
+<p>In component form:</p>
+<div class="arithmatex">\[
+v_x(t + \Delta t) = v_x(t) + \left( \frac{q}{m} E_x + \frac{q}{m} (v_y B_z - v_z B_y) \right) \Delta t
+\]</div>
+<div class="arithmatex">\[
+v_y(t + \Delta t) = v_y(t) + \left( \frac{q}{m} E_y - \frac{q}{m} (v_x B_z - v_z B_x) \right) \Delta t
+\]</div>
+<div class="arithmatex">\[
+v_z(t + \Delta t) = v_z(t) + \left( \frac{q}{m} E_z + \frac{q}{m} (v_x B_y - v_y B_x) \right) \Delta t
+\]</div>
+<div class="arithmatex">\[
+x(t + \Delta t) = x(t) + v_x(t) \Delta t
+\]</div>
+<div class="arithmatex">\[
+y(t + \Delta t) = y(t) + v_y(t) \Delta t
+\]</div>
+<div class="arithmatex">\[
+z(t + \Delta t) = z(t) + v_z(t) \Delta t
+\]</div>
+<h3 id="33-field-configurations">3.3 Field Configurations</h3>
+<p>We simulate the following cases:</p>
 <ol>
-<li>A Markdown document with Python script or notebook implementing the simulations  </li>
-<li>Visualizations of particle trajectories for the specified field configurations  </li>
-<li>A discussion on how the results relate to practical systems,<br/>
-   such as <strong>cyclotrons</strong> or <strong>magnetic traps</strong></li>
+<li><strong>Uniform Magnetic Field</strong>: $ \mathbf{B} = (0, 0, B_z) $, $ \mathbf{E} = 0 $.</li>
+<li>The magnetic force simplifies to:</li>
 </ol>
-<hr/>
-<h2 id="hints-and-resources">🔷 Hints and Resources:</h2>
+<p>$$
+   \mathbf{v} \times \mathbf{B} = (v_y B_z, -v_x B_z, 0)
+   $$</p>
 <ul>
-<li>Use numerical methods like <strong>Euler</strong> or <strong>Runge-Kutta</strong> to solve motion equations  </li>
-<li>Employ <strong>NumPy</strong> and <strong>Matplotlib</strong> in Python  </li>
-<li>Start with simple cases (e.g., uniform magnetic field)<br/>
-  then move to crossed-field setups</li>
+<li>The equations of motion become:</li>
 </ul>
+<p>$$
+   \frac{dv_x}{dt} = \frac{q B_z}{m} v_y, \quad \frac{dv_y}{dt} = -\frac{q B_z}{m} v_x, \quad \frac{dv_z}{dt} = 0
+   $$</p>
+<ul>
+<li>This leads to circular motion in the $ x <span class="arithmatex">\(-\)</span> y $ plane with radius:</li>
+</ul>
+<p>$$
+   r = \frac{m \sqrt{v_x^2 + v_y^2}}{|q| B_z}
+   $$</p>
+<ol>
+<li><strong>Combined Electric and Magnetic Fields</strong>: $ \mathbf{B} = (0, 0, B_z) $, $ \mathbf{E} = (E_x, 0, 0) $.</li>
+<li>The equations of motion are:</li>
+</ol>
+<p>$$
+   \frac{dv_x}{dt} = \frac{q}{m} E_x + \frac{q B_z}{m} v_y, \quad \frac{dv_y}{dt} = -\frac{q B_z}{m} v_x, \quad \frac{dv_z}{dt} = 0
+   $$</p>
+<ul>
+<li>The drift velocity in the $ y $-direction is:</li>
+</ul>
+<p>$$
+   v_{d,y} = \frac{E_x}{B_z}
+   $$</p>
+<ol>
+<li><strong>Crossed Fields</strong>: $ \mathbf{E} \perp \mathbf{B} $, leading to the drift velocity:</li>
+</ol>
+<div class="arithmatex">\[
+\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
+\]</div>
+<hr/>
+<h2 id="4-parameter-exploration">4. Parameter Exploration</h2>
+<p>We vary the following parameters to observe their effects:</p>
+<ul>
+<li><strong>Field Strengths</strong>: $ E $ and $ B $.</li>
+<li>The Larmor radius scales as:</li>
+</ul>
+<p>$$
+  r \propto \frac{1}{B}
+  $$</p>
+<ul>
+<li>The drift velocity scales as:</li>
+</ul>
+<p>$$
+  v_d \propto E
+  $$</p>
+<ul>
+<li><strong>Initial Velocity</strong>: $ \mathbf{v}_0 = (v_x, v_y, v_z) $.</li>
+<li>The radius of circular motion depends on the perpendicular velocity:</li>
+</ul>
+<p>$$
+  v_\perp = \sqrt{v_x^2 + v_y^2}
+  $$</p>
+<ul>
+<li>The pitch of the helical motion depends on the parallel velocity:</li>
+</ul>
+<p>$$
+  v_\parallel = v_z
+  $$</p>
+<ul>
+<li><strong>Charge and Mass</strong>: $ q $ and $ m $.</li>
+<li>The cyclotron frequency scales as:</li>
+</ul>
+<p>$$
+  \omega \propto \frac{q}{m}
+  $$</p>
+<ul>
+<li>The Larmor radius scales as:</li>
+</ul>
+<p>$$
+  r \propto \frac{m}{q}
+  $$</p>
+<hr/>
+<h2 id="5-visualization">5. Visualization</h2>
+<p>We create 2D and 3D plots to visualize the particle's trajectory. Key phenomena to highlight include:</p>
+<ul>
+<li><strong>Larmor Radius</strong>: The radius of circular motion:</li>
+</ul>
+<div class="arithmatex">\[
+r = \frac{m v_\perp}{|q| B}
+\]</div>
+<ul>
+<li><strong>Drift Velocity</strong>: In crossed fields:</li>
+</ul>
+<div class="arithmatex">\[
+v_d = \frac{E}{B}
+\]</div>
+<ul>
+<li><strong>Helical Motion</strong>: The pitch of the helix is:</li>
+</ul>
+<div class="arithmatex">\[
+p = v_\parallel T = v_\parallel \frac{2\pi m}{|q| B}
+\]</div>
+<hr/>
+<h2 id="6-python-implementation">6. Python Implementation</h2>
+<p>Below is a Python script to simulate the motion of a charged particle using the Euler method. The script includes three cases: a uniform magnetic field, combined fields, and parameter exploration by varying $ B $.</p>
+<h3 id="case-1-uniform-magnetic-field">Case 1: Uniform Magnetic Field</h3>
+<ul>
+<li>Cyclotron Frequency: $ \omega = 9.58e+07 $ rad/s</li>
+<li>Larmor Radius: $ r = 1.04e-03 $ m</li>
+</ul>
+<p><img alt="alt text" src="../image.png"/></p>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<h3 id="case-2-combined-electric-and-magnetic-fields">Case 2: Combined Electric and Magnetic Fields</h3>
+<ul>
+<li>Drift Velocity: $ \mathbf{v}_d = (0.00e+00, -1.00e+05, 0.00e+00) $ m/s</li>
+</ul>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<p><img alt="alt text" src="../image-3.png"/></p>
+<h3 id="case-3-parameter-exploration-varying-b">Case 3: Parameter Exploration (Varying B)</h3>
+<ul>
+<li>Cyclotron Frequency: $ \omega = 1.92e+08 $ rad/s</li>
+<li>Larmor Radius: $ r = 5.22e-04 $ m</li>
+</ul>
+<p><img alt="alt text" src="../image-4.png"/></p>
+<p><img alt="alt text" src="../image-5.png"/></p>
+<h3 id="explanation-of-the-code">Explanation of the Code</h3>
+<p>The Python script implements a numerical simulation of a charged particle's motion under the Lorentz force using the Euler method. Here's a breakdown of its functionality:</p>
+<ul>
+<li><strong>Lorentz Acceleration Function</strong>: The <code>lorentz_acceleration</code> function computes the acceleration due to the Lorentz force:</li>
+</ul>
+<div class="arithmatex">\[
+\frac{d\mathbf{v}}{dt} = \frac{q}{m} \mathbf{E} + \frac{q}{m} (\mathbf{v} \times \mathbf{B})
+\]</div>
+<p>The cross product $ \mathbf{v} \times \mathbf{B} $ is calculated using NumPy's <code>np.cross</code> function, ensuring the magnetic force is perpendicular to both $ \mathbf{v} $ and $ \mathbf{B} $.</p>
+<ul>
+<li><strong>Simulation Function</strong>: The <code>simulate_motion</code> function updates the particle's velocity and position at each time step using the Euler method:</li>
+</ul>
+<div class="arithmatex">\[
+\mathbf{v}_{n+1} = \mathbf{v}_n + \left( \frac{d\mathbf{v}}{dt} \right) \Delta t
+\]</div>
+<div class="arithmatex">\[
+\mathbf{r}_{n+1} = \mathbf{r}_n + \mathbf{v}_n \Delta t
+\]</div>
+<p>The function iterates over the specified number of time steps, storing the position $ \mathbf{r} = (x, y, z) $ and velocity $ \mathbf{v} = (v_x, v_y, v_z) $ in arrays for later plotting.</p>
+<ul>
+<li><strong>Theoretical Calculations</strong>: The <code>compute_theoretical_values</code> function calculates the cyclotron frequency and Larmor radius:</li>
+</ul>
+<div class="arithmatex">\[
+\omega = \frac{|q| B}{m}
+\]</div>
+<div class="arithmatex">\[
+r_{\text{Larmor}} = \frac{m v_\perp}{|q| B}
+\]</div>
+<p>where $ v_\perp = \sqrt{v_x^2 + v_y^2} $ is the velocity component perpendicular to $ \mathbf{B} $. These values are printed to verify the simulation results.</p>
+<ul>
+<li><strong>Drift Velocity</strong>: The <code>compute_drift_velocity</code> function calculates the drift velocity in crossed fields:</li>
+</ul>
+<div class="arithmatex">\[
+\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
+\]</div>
+<p>The magnitude of $ \mathbf{B} $ is computed as $ B = \sqrt{B_x^2 + B_y^2 + B_z^2} $ to avoid division by zero.</p>
+<ul>
+<li>
+<p><strong>Plotting</strong>: The <code>plot_trajectory</code> function generates 2D (x-y plane) and 3D plots of the particle's trajectory, visualizing the motion and highlighting phenomena like circular or helical paths.</p>
+</li>
+<li>
+<p><strong>Simulation Cases</strong>:</p>
+</li>
+</ul>
+<p>1 . <strong>Case 1 (Uniform Magnetic Field)</strong>:</p>
+<p>With $ \mathbf{B} = (0, 0, 1) $ T and $ \mathbf{E} = 0 $, the particle exhibits circular motion in the x-y plane, as expected from the magnetic force:</p>
+<p>$$
+  \mathbf{F}_B = q \mathbf{v} \times \mathbf{B}
+  $$</p>
+<p>2 . <strong>Case 2 (Combined Fields)</strong>:</p>
+<p>With $ \mathbf{B} = (0, 0, 1) $ T and $ \mathbf{E} = (10^5, 0, 0) $ V/m, the particle follows a helical path with a drift in the y-direction, consistent with the drift velocity:</p>
+<p>$$
+  v_{d,y} = \frac{E_x}{B_z}
+  $$</p>
+<p>3 . <strong>Case 3 (Parameter Exploration)</strong>:  </p>
+<p>Doubling the magnetic field to $ \mathbf{B} = (0, 0, 2) $ T reduces the Larmor radius by half, as $ r \propto \frac{1}{B} $.</p>
+<p>The script relies on NumPy for numerical computations and Matplotlib for creating the visualizations, ensuring accurate and clear representations of the particle's motion.</p>
+<hr/>
+<h2 id="7-analysis-applications-in-real-world-systems">7. Analysis: Applications in Real-World Systems</h2>
+<h3 id="71-cyclotrons-and-particle-acceleration">7.1 Cyclotrons and Particle Acceleration</h3>
+<p>Cyclotrons utilize the Lorentz force to accelerate charged particles in circular orbits. The magnetic field $ \mathbf{B} $ provides the centripetal force:</p>
+<div class="arithmatex">\[
+\frac{m v^2}{r} = |q| v B
+\]</div>
+<p>Rearranging gives the radius of the orbit:</p>
+<div class="arithmatex">\[
+r = \frac{m v}{|q| B}
+\]</div>
+<p>The frequency of the circular motion, known as the cyclotron frequency, is independent of the particle's speed:</p>
+<div class="arithmatex">\[
+\omega = \frac{|q| B}{m}
+\]</div>
+<p>The simulation in Case 1 replicates this behavior, showing a circular trajectory in a uniform magnetic field. The electric field in a cyclotron, applied between dees, increases the particle's kinetic energy:</p>
+<div class="arithmatex">\[
+E_k = \frac{1}{2} m v^2
+\]</div>
+<p>As $ v $ increases, the radius $ r $ grows, but the frequency $ \omega $ remains constant, allowing synchronization with an alternating electric field.</p>
+<h3 id="72-magnetic-confinement-in-plasmas">7.2 Magnetic Confinement in Plasmas</h3>
+<p>In plasma physics, magnetic fields are used to confine charged particles, as seen in devices like tokamaks. The helical motion observed in Case 2, where the particle has a velocity component $ v_\parallel $ along $ \mathbf{B} $, is key to this confinement. The pitch of the helix is:</p>
+<div class="arithmatex">\[
+p = v_\parallel T = v_\parallel \frac{2\pi m}{|q| B}
+\]</div>
+<p>The confinement radius, or gyroradius, is:</p>
+<div class="arithmatex">\[
+r_g = \frac{m v_\perp}{|q| B}
+\]</div>
+<p>A smaller $ r_g $ (achieved with a stronger $ B $) improves confinement, preventing particles from escaping to the walls of the reactor.</p>
+<h3 id="73-crossed-fields-in-magnetrons">7.3 Crossed Fields in Magnetrons</h3>
+<p>Magnetrons, used in microwave ovens, exploit the drift motion in crossed electric and magnetic fields. In Case 2, with $ \mathbf{E} = (E_x, 0, 0) $ and $ \mathbf{B} = (0, 0, B_z) $, the drift velocity is:</p>
+<div class="arithmatex">\[
+\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2} = \left(0, \frac{E_x}{B_z}, 0\right)
+\]</div>
+<p>This drift causes electrons to move in a cycloidal path, generating microwave radiation through interactions with a resonant cavity. The simulation captures this drift, showing a net displacement in the y-direction superimposed on the helical motion.</p>
+<hr/>
+<h2 id="8-future-enhancements-and-extensions">8. Future Enhancements and Extensions</h2>
+<p>To extend the simulation and make it more applicable to complex scenarios, consider the following improvements:</p>
+<ol>
+<li><strong>Spatially Varying Fields</strong>: Introduce a non-uniform magnetic field, such as $ \mathbf{B}(z) = (0, 0, B_0 + kz) $, to model magnetic mirroring. The force due to the field gradient is:</li>
+</ol>
+<div class="arithmatex">\[
+F_z = -\mu \frac{\partial B}{\partial z}
+\]</div>
+<p>where $ \mu $ is the magnetic moment:</p>
+<div class="arithmatex">\[
+\mu = \frac{m v_\perp^2}{2 B}
+\]</div>
+<p>This force causes particles to reflect back in regions of increasing $ B $, a principle used in magnetic bottles.</p>
+<p>2 . <strong>Relativistic Dynamics</strong>: At high velocities, relativistic effects become significant. The relativistic momentum is:</p>
+<div class="arithmatex">\[
+\mathbf{p} = \gamma m \mathbf{v}, \quad \gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}
+\]</div>
+<p>where $ c $ is the speed of light. The equation of motion becomes:</p>
+<div class="arithmatex">\[
+\frac{d\mathbf{p}}{dt} = q \mathbf{E} + q \mathbf{v} \times \mathbf{B}
+\]</div>
+<p>Incorporating $ \gamma $ would make the simulation more accurate for high-energy particles, such as those in particle accelerators.</p>
+<p>3 . <strong>Particle Interactions</strong>: Model collisions by adding a frictional term to the equation of motion:</p>
+<div class="arithmatex">\[
+\frac{d\mathbf{v}}{dt} = \frac{q}{m} \mathbf{E} + \frac{q}{m} (\mathbf{v} \times \mathbf{B}) - \nu \mathbf{v}
+\]</div>
+<p>where $ \nu $ is the collision frequency. This term accounts for energy loss due to interactions with other particles, relevant in dense plasmas.</p>
+<p>4 . <strong>Collective Effects</strong>: Simulate a system of multiple particles to study collective behaviors, such as plasma waves. The plasma frequency is:</p>
+<div class="arithmatex">\[
+\omega_p = \sqrt{\frac{n q^2}{\epsilon_0 m}}
+\]</div>
+<p>where $ n $ is the particle number density and $ \epsilon_0 $ is the permittivity of free space. This frequency governs oscillations in a plasma, which are critical in fusion research.</p>
+<hr/>
+<h2 id="9-conclusion">9. Conclusion</h2>
+<p>This simulation successfully modeled the motion of a charged particle under the influence of the Lorentz force, capturing key behaviors such as circular motion, helical trajectories, and drift in crossed fields. The theoretical predictions, including the cyclotron frequency:</p>
+<div class="arithmatex">\[
+\omega = \frac{|q| B}{m}
+\]</div>
+<p>and the drift velocity:</p>
+<div class="arithmatex">\[
+\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
+\]</div>
+<p>were validated through the simulation results. The Larmor radius:</p>
+<div class="arithmatex">\[
+r = \frac{m v_\perp}{|q| B}
+\]</div>
+<p>decreased as expected when the magnetic field strength was doubled in Case 3, confirming the inverse relationship $ r \propto \frac{1}{B} $.</p>
+<p>The results have direct relevance to practical systems, including cyclotrons (where circular motion accelerates particles), magnetic confinement in fusion devices (where helical motion traps particles), and magnetrons (where drift motion generates microwaves). Future enhancements, such as incorporating non-uniform fields, relativistic effects, and particle interactions, could further expand the simulation's applicability to real-world scenarios, providing deeper insights into the dynamics of charged particles in electromagnetic fields.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
