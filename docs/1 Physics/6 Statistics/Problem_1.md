@@ -65,14 +65,18 @@ The rate at which the sampling distribution approaches normality depends on:
 Mathematically, the sampling distribution of the mean has the following properties:
 
 1. **Mean**:
+
    $$
    \mathbb{E}[\bar{X}] = \mathbb{E}[X] = \mu
    $$
+
    meaning the expected value of the sample mean is equal to the population mean.
 2. **Variance**:
+
    $$
    \text{Var}(\bar{X}) = \frac{\sigma^2}{n}
    $$
+
    meaning that increasing the sample size reduces variance.
 
 ### Impact of Variance
