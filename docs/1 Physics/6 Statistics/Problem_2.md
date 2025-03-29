@@ -1,101 +1,122 @@
-# Problem 2 - Estimating Pi using Monte Carlo Methods
+# Estimating Pi using Monte Carlo Methods
 
-## 🔷 Motivation:
+## Introduction
 
-Monte Carlo simulations are a powerful class of computational techniques that use randomness to solve problems or estimate values.  
-One of the most elegant applications is estimating the value of \(\pi\) through geometric probability.
+Monte Carlo methods are a class of computational algorithms that rely on repeated random sampling to estimate numerical results. One of the classic applications of Monte Carlo methods is estimating the value of $\pi$ through geometric probability. In this document, we explore two such approaches:
 
-By randomly generating points and analyzing their positions relative to a geometric shape, we can approximate \(\pi\) in an intuitive and visually engaging way.
+1. Using the ratio of points inside a unit circle to the total points in a square.
+2. Buffon's Needle experiment, which estimates $\pi$ based on the probability of a needle crossing parallel lines.
 
-This problem connects fundamental concepts of **probability**, **geometry**, and **numerical computation**.  
-It also provides a gateway to understand how randomness can be harnessed to solve complex problems in physics, finance, and computer science.
+## Part 1: Estimating $\pi$ Using a Circle
 
----
+### Theoretical Foundation
 
-## 🔷 Task:
+The idea behind this method is simple: if we randomly distribute points within a square of side length 2, the proportion of points that fall inside an inscribed circle should approximate the ratio of their areas.
 
-### 🔹 PART 1: Estimating \(\pi\) Using a Circle
+For a unit circle ($r=1$) inscribed in a square of side length 2:
 
-#### 1. Theoretical Foundation:
+- The area of the circle is: $ A_{circle} = \pi r^2 = \pi$.
+- The area of the square is: $ A_{square} = 4$.
 
-- Explain how the ratio of points inside a circle to the total number of points in a square can be used to estimate \(\pi\).
-- Derive the formula:  
-  \[
-  \pi \approx 4 \cdot \left(\frac{\text{points inside circle}}{\text{total points}}\right)
-  \]  
-  for a unit circle.
+Since points are randomly distributed in the square, the probability of a point falling inside the circle is proportional to the ratio of their areas:
 
-#### 2. Simulation:
+$$
+\frac{\text{Points inside circle}}{\text{Total points}} \approx \frac{A_{circle}}{A_{square}} = \frac{\pi}{4}
+$$
 
-- Generate random points in a 2D square bounding a unit circle.
-- Count the number of points falling inside the circle.
-- Estimate \(\pi\) based on this ratio.
+Solving for $\pi$:
 
-#### 3. Visualization:
+$$
+\pi \approx 4 \times \frac{\text{Points inside circle}}{\text{Total points}}
+$$
 
-- Create a plot showing the randomly generated points.
-- Distinguish between those **inside** and **outside** the circle.
+### Simulation
 
-#### 4. Analysis:
+We generate random points $(x, y)$ inside the square $[-1,1] \times [-1,1]$ and count how many fall inside the unit circle ($x^2 + y^2 \leq 1$). The ratio of these counts gives our estimate for $\pi$.
 
-- Investigate how accuracy improves as the number of points increases.
-- Discuss convergence rate and computational considerations.
+### Visualization
 
----
+A scatter plot will show points inside the circle in one color and those outside in another, helping us visualize the method.
 
-### 🔹 PART 2: Estimating \(\pi\) Using Buffon’s Needle
+### Python Code
 
-#### 1. Theoretical Foundation:
+![alt text](image-4.png)
 
-- Describe Buffon’s Needle problem: estimate \(\pi\) based on the probability of a needle crossing parallel lines.
-- Derive the formula:  
-  \[
-  \pi \approx \frac{2 \cdot \text{needle length} \cdot \text{number of throws}}{\text{distance between lines} \cdot \text{number of crossings}}
-  \]
 
-#### 2. Simulation:
+## Part 2: Estimating $\pi$ Using Buffon's Needle
 
-- Simulate the random dropping of a needle on a plane with parallel lines.
-- Count how many times the needle crosses a line.
-- Estimate \(\pi\) using the formula.
+### Theoretical Foundation
 
-#### 3. Visualization:
+Buffon's Needle experiment estimates $\pi$ based on the probability of a randomly dropped needle crossing parallel lines. Given:
 
-- Create a graphical representation of the simulation.
-- Show needle positions relative to the lines.
+- Needle length $l$.
+- Distance between parallel lines $d$ (where $l \leq d$).
 
-#### 4. Analysis:
+The probability of a needle crossing a line is given by:
 
-- Explore how the number of drops affects accuracy.
-- Compare convergence with the circle-based method.
+$$
+P = \frac{2lN}{dX} \Rightarrow \pi \approx \frac{2lN}{dX}
+$$
 
----
+where:
 
-## 🔷 Deliverables:
+- $N$ = total number of needle drops,
+- $X$ = number of crossings.
 
-1. A Markdown document with:
-   - Clear explanations of both methods
-   - Discussion of theoretical foundations and results
+### Simulation
+We simulate randomly dropping needles onto a plane with parallel lines and count how often they cross a line.
 
-2. Python scripts/notebooks:
-   - Code for circle-based Monte Carlo simulation
-   - Code for Buffon’s Needle simulation
+### Visualization
+A graphical representation will show needle positions, highlighting crossings.
 
-3. Graphical outputs:
-   - Plots of random points (circle method)
-   - Visualizations of needle positions (Buffon’s method)
+### Python Code
 
-4. Analysis:
-   - Tables/graphs showing convergence vs iterations
-   - Comparison of both methods in terms of accuracy & efficiency
+![alt text](image-5.png)
 
----
+## Analysis
 
-## 🔷 Hints and Resources:
+### Convergence
 
-- Use **NumPy** for random generation  
-- Use **Matplotlib** for visualizations  
-- Ensure uniform random point generation (for circle method)  
-- In Buffon’s Needle:
-  - Pay attention to geometry: needle length vs distance between lines  
-  - Start with small iteration counts, then increase for convergence
+Both methods improve in accuracy as the number of samples increases. We compare their convergence using graphs:
+
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)
+
+![alt text](image-9.png)
+
+![alt text](image-10.png)
+
+![alt text](image-11.png)
+
+![alt text](image-12.png)
+
+![alt text](image-13.png)
+
+![alt text](image-14.png)
+
+![alt text](image-15.png)
+
+![alt text](image-16.png)
+
+![alt text](image-17.png)
+
+![alt text](image-18.png)
+
+### Comparison
+
+| Method | Accuracy | Computational Complexity |
+|--------|----------|-------------------------|
+| Circle-Based | High with large samples | Low complexity, fast |
+| Buffon's Needle | Lower, slower convergence | More computationally expensive |
+
+### Conclusion
+
+- The circle-based Monte Carlo method is more efficient and converges faster.
+- Buffon's Needle provides an interesting probabilistic approach but requires more samples for accuracy.
+- Both methods demonstrate the power of Monte Carlo simulations in numerical estimation.
+
+This study highlights how randomness can be harnessed to solve complex problems in probability, physics, and computational mathematics.
+
